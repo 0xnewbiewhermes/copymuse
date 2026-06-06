@@ -2,18 +2,20 @@ export const LENGTHS = ["short (300-500 words)", "medium (800-1200 words)", "lon
 
 export function getBlogConfig(length: number, keywords: string[], tone: string, customTone?: string) {
   const lengthDesc = LENGTHS[length] ?? LENGTHS[1];
-  const toneGuide = tone === "custom" && customTone ? customTone :
+  const rawToneGuide = tone === "custom" && customTone ? customTone :
     tone === "professional" ? "Professional, authoritative, well-researched" :
     tone === "casual" ? "Conversational, easy to read, relatable" :
     tone === "storytelling" ? "Narrative, engaging, flows like a story" :
     "Clear, informative, structured";
+  const toneGuide = rawToneGuide.replace(/["\n\r]/g, "").slice(0, 200);
+  const safeKeywords = keywords.map(k => k.replace(/["\n\r]/g, "").slice(0, 50)).filter(Boolean);
 
   return {
     systemPrompt: `You are an expert blog writer and SEO specialist.
 
 Write a blog post of ${lengthDesc} with tone: ${toneGuide}.
 
-Target keywords: ${keywords.join(", ")}
+Target keywords: ${safeKeywords.join(", ")}
 
 Structure:
 1. Engaging title (H1)

@@ -32,12 +32,13 @@ export function getCharLimit(platform: SocialPlatform): number {
 
 export function getSocialPostConfig(platform: SocialPlatform, tone: string, customTone?: string) {
   const guide = PLATFORM_GUIDES[platform];
-  const toneGuide = tone === "custom" && customTone ? customTone :
+  const rawToneGuide = tone === "custom" && customTone ? customTone :
     tone === "professional" ? "Professional and polished" :
     tone === "casual" ? "Casual and friendly" :
     tone === "funny" ? "Funny and entertaining" :
     tone === "motivational" ? "Inspiring and uplifting" :
     "Natural and conversational";
+  const toneGuide = rawToneGuide.replace(/["\n\r]/g, "").slice(0, 200);
 
   return {
     systemPrompt: `You are a social media content creator. Write a ${platform} post.

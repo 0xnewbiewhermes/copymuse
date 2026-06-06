@@ -26,7 +26,8 @@ export function getCharLimit(platform: Platform): number {
 
 export function getSystemPrompt(platform: Platform, tone: string, customTone?: string): string {
   const rules = PLATFORM_CONFIG[platform];
-  const toneGuide = tone === "custom" && customTone ? customTone : TONE_GUIDES[tone] ?? TONE_GUIDES.casual;
+  const rawTone = tone === "custom" && customTone ? customTone : TONE_GUIDES[tone] ?? TONE_GUIDES.casual;
+  const toneGuide = rawTone.replace(/["\n\r]/g, "").slice(0, 200);
 
   return `You are a professional social media copywriter. Write a ${rules.label} caption from the brief.
 

@@ -1,8 +1,9 @@
 export function getThreadConfig(tone: string, threadLength: number) {
+  const safeTone = tone.replace(/["\n\r]/g, "").slice(0, 50);
   return {
     systemPrompt: `You are a Twitter/X thread expert. Write a ${threadLength}-tweet thread.
 
-Tone: ${tone}
+Tone: ${safeTone}
 Language: Use casual, conversational English.
 
 Structure:
