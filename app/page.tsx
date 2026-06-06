@@ -23,18 +23,15 @@ export default function Home() {
         <p className="text-sm sm:text-lg text-[var(--color-text-secondary)] max-w-lg mx-auto leading-relaxed px-2">
           Captions, prompts, blog posts, threads, SEO, and social. All AI-powered, all free. No signup needed.
         </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 pt-2">
+        <div className="flex flex-col sm:flex-row items-center justify-center pt-2">
           <a href="/caption" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold text-white bg-[var(--color-coral-accent)] hover:bg-[var(--color-coral-600)] transition-colors">
             Try Caption Generator
-          </a>
-          <a href="#tools" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-coral-accent)] hover:text-[var(--color-coral-accent)] transition-colors">
-            View All Tools
           </a>
         </div>
       </div>
 
       {/* Tools Grid */}
-      <div id="tools" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {TOOLS.map((tool, i) => (
           <ToolCard key={tool.href} {...tool} delay={i} />
         ))}
