@@ -64,7 +64,7 @@ export default function OutputDisplay({
       </div>
 
       <div className="flex gap-3">
-        <button onClick={handleCopy} className="flex-1 px-4 py-2 text-sm font-semibold rounded-full text-white bg-gradient-to-r from-[var(--color-coral-accent)] to-amber-500 hover:opacity-90 flex items-center justify-center gap-2 transition-all shadow-sm">
+        <button onClick={handleCopy} className="flex-1 px-4 py-2 text-sm font-semibold rounded-full text-white bg-[var(--color-coral-accent)] hover:bg-[var(--color-coral-600)] flex items-center justify-center gap-2 transition-colors">
           {copied ? (
             <><IconCheck className="w-4 h-4" /> Copied</>
           ) : (

@@ -57,7 +57,7 @@ export default function GeneratorForm({
         <button
           type="submit"
           disabled={isLoading || !topic.trim()}
-          className="px-4 py-2.5 text-sm font-semibold rounded-full text-white bg-gradient-to-r from-[var(--color-coral-accent)] to-amber-500 hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-all shadow-sm"
+          className="px-4 py-2.5 text-sm font-semibold rounded-full text-white bg-[var(--color-coral-accent)] hover:bg-[var(--color-coral-600)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-colors"
         >
           {isLoading ? (
             <span className="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
