@@ -15,11 +15,8 @@ Each tweet MUST be under 280 characters.
 Use emojis sparingly (max 1 per tweet).
 Natural flow between tweets — each should make you want to read the next.
 
-Output as JSON:
-{
-  "tweets": ["tweet 1", "tweet 2", ...],
-  "totalTweets": ${threadLength}
-}`,
+Format: Separate each tweet with "---" on its own line. Start each tweet with "Tweet N:" so they're clearly numbered.
+No JSON, no code fences — output the thread directly.`,
     userPrompt: (topic: string) => topic,
     maxTokens: 4000,
     temperature: 0.8,

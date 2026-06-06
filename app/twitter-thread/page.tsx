@@ -2,20 +2,27 @@
 
 import { useState, useCallback } from "react";
 import OutputDisplay from "@/components/OutputDisplay";
+import HistoryPanel from "@/components/HistoryPanel";
+import { saveToHistory } from "@/lib/history";
+
+type StreamEvent = { type: "chunk"; content: string } | { type: "done" } | { type: "error"; content: string };
 
 export default function TwitterThreadPage() {
   const [topic, setTopic] = useState("");
   const [threadLength, setThreadLength] = useState(5);
-  const [result, setResult] = useState<{ tweets: string[]; totalTweets: number } | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [displayText, setDisplayText] = useState("");
+
+  const formatThread = useCallback((raw: string) => {
+    const tweets = raw.split(/^---$/m).map(t => t.trim()).filter(Boolean);
+    return tweets.map((t, i) => `${i + 1}\n${t}`).join("\n\n");
+  }, []);
 
   const handleGenerate = useCallback(async () => {
     if (!topic.trim() || isLoading) return;
     setIsLoading(true);
     setError(null);
-    setResult(null);
     setDisplayText("");
 
     try {
@@ -25,18 +32,50 @@ export default function TwitterThreadPage() {
         body: JSON.stringify({ topic: topic.trim(), threadLength }),
       });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Generation failed");
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `Server error (${res.status})`);
+      }
 
-      setResult(data);
-      const text = data.tweets?.map((t: string, i: number) => `${i + 1}/${data.totalTweets}\n${t}`).join("\n\n") || "";
-      setDisplayText(text);
+      const reader = res.body?.getReader();
+      if (!reader) throw new Error("No response body");
+
+      const decoder = new TextDecoder();
+      let buffer = "";
+      let full = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split("\n");
+        buffer = lines.pop() || "";
+
+        for (const line of lines) {
+          if (!line.trim()) continue;
+          let event: StreamEvent;
+          try {
+            event = JSON.parse(line);
+          } catch {
+            continue;
+          }
+          if (event.type === "chunk") {
+            full += event.content;
+            setDisplayText(formatThread(full));
+          } else if (event.type === "done") {
+            saveToHistory({ tool: "twitter-thread", topic: topic.trim(), content: formatThread(full), charCount: [...full].length });
+          } else if (event.type === "error") {
+            throw new Error(event.content);
+          }
+        }
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Generation failed");
+      setDisplayText("");
     } finally {
       setIsLoading(false);
     }
-  }, [topic, threadLength, isLoading]);
+  }, [topic, threadLength, isLoading, formatThread]);
 
   const handleRegenerate = useCallback(() => {
     if (topic) handleGenerate();
@@ -97,19 +136,39 @@ export default function TwitterThreadPage() {
         </div>
       )}
 
-      {result && (
-        <div className="space-y-2">
-          <p className="text-xs text-gray-400">{result.totalTweets} tweets generated</p>
+      {/* Loading skeleton */}
+      {isLoading && !displayText && (
+        <div className="border border-[var(--color-border)] rounded-xl p-8">
+          <div className="space-y-4 animate-pulse">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="space-y-2">
+                <div className="h-3 bg-gray-100 rounded w-12" />
+                <div className="h-3 bg-gray-100 rounded w-full" />
+                <div className="h-3 bg-gray-100 rounded w-4/5" />
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-[var(--color-text-tertiary)] mt-4 text-center">Writing your thread...</p>
         </div>
       )}
 
-      <OutputDisplay
-        content={displayText}
-        charCount={[...displayText].length}
-        onRegenerate={handleRegenerate}
-        isLoading={isLoading}
-        showCharCount={false}
-      />
+      {(displayText || (!isLoading && error)) && (
+        <>
+          <OutputDisplay
+            content={displayText}
+            charCount={[...displayText].length}
+            onRegenerate={handleRegenerate}
+            isLoading={isLoading}
+            showCharCount={false}
+          />
+          <div className="mt-4">
+            <HistoryPanel
+              tool="twitter-thread"
+              onSelect={(item) => setDisplayText(item.content)}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 }

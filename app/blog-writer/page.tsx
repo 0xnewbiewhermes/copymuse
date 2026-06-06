@@ -3,15 +3,11 @@
 import { useState, useCallback } from "react";
 import ToneSelector from "@/components/ToneSelector";
 import OutputDisplay from "@/components/OutputDisplay";
+import HistoryPanel from "@/components/HistoryPanel";
+import { saveToHistory } from "@/lib/history";
 import type { Tone } from "@/lib/types";
 
-interface BlogResult {
-  title: string;
-  content: string;
-  metaDescription?: string;
-  keywords: string[];
-  estimatedReadTime: string;
-}
+type StreamEvent = { type: "chunk"; content: string } | { type: "done" } | { type: "error"; content: string };
 
 export default function BlogWriterPage() {
   const [topic, setTopic] = useState("");
@@ -19,7 +15,6 @@ export default function BlogWriterPage() {
   const [tone, setTone] = useState<Tone>("professional");
   const [customTone, setCustomTone] = useState("");
   const [length, setLength] = useState(1);
-  const [result, setResult] = useState<BlogResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [displayContent, setDisplayContent] = useState("");
@@ -28,7 +23,6 @@ export default function BlogWriterPage() {
     if (!topic.trim() || isLoading) return;
     setIsLoading(true);
     setError(null);
-    setResult(null);
     setDisplayContent("");
 
     try {
@@ -44,13 +38,46 @@ export default function BlogWriterPage() {
         }),
       });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Generation failed");
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `Server error (${res.status})`);
+      }
 
-      setResult(data);
-      setDisplayContent(data.content || JSON.stringify(data, null, 2));
+      const reader = res.body?.getReader();
+      if (!reader) throw new Error("No response body");
+
+      const decoder = new TextDecoder();
+      let buffer = "";
+      let full = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split("\n");
+        buffer = lines.pop() || "";
+
+        for (const line of lines) {
+          if (!line.trim()) continue;
+          let event: StreamEvent;
+          try {
+            event = JSON.parse(line);
+          } catch {
+            continue;
+          }
+          if (event.type === "chunk") {
+            full += event.content;
+            setDisplayContent(full);
+          } else if (event.type === "done") {
+            saveToHistory({ tool: "blog-writer", topic: topic.trim(), content: full, charCount: [...full].length });
+          } else if (event.type === "error") {
+            throw new Error(event.content);
+          }
+        }
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Generation failed");
+      setDisplayContent("");
     } finally {
       setIsLoading(false);
     }
@@ -130,12 +157,23 @@ export default function BlogWriterPage() {
         </div>
       )}
 
-      {result && (
+      {/* Loading skeleton */}
+      {isLoading && !displayContent && (
+        <div className="border border-[var(--color-border)] rounded-xl p-8">
+          <div className="space-y-3 animate-pulse">
+            <div className="h-4 bg-gray-100 rounded w-2/3" />
+            <div className="h-3 bg-gray-100 rounded w-1/3" />
+            <div className="h-3 bg-gray-100 rounded w-full" />
+            <div className="h-3 bg-gray-100 rounded w-full" />
+            <div className="h-3 bg-gray-100 rounded w-3/4" />
+            <div className="h-3 bg-gray-100 rounded w-1/2" />
+          </div>
+          <p className="text-xs text-[var(--color-text-tertiary)] mt-4 text-center">Writing your blog post...</p>
+        </div>
+      )}
+
+      {(displayContent || (!isLoading && error)) && (
         <div className="space-y-4 animate-in">
-          <h2 className="text-xl font-bold">{result.title}</h2>
-          {result.metaDescription && (
-            <p className="text-sm text-gray-500 italic">{result.metaDescription}</p>
-          )}
           <OutputDisplay
             content={displayContent}
             charCount={[...displayContent].length}
@@ -143,6 +181,12 @@ export default function BlogWriterPage() {
             isLoading={isLoading}
             showCharCount={false}
           />
+          <div className="mt-4">
+            <HistoryPanel
+              tool="blog-writer"
+              onSelect={(item) => setDisplayContent(item.content)}
+            />
+          </div>
         </div>
       )}
     </div>

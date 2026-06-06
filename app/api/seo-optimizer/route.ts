@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { generate } from "@/lib/ai-provider";
+import { generateStream } from "@/lib/ai-provider";
 import { checkRateLimit } from "@/lib/rate-limit";
+import { createStreamResponse } from "@/lib/stream-utils";
 import { getSeoConfig } from "@/lib/prompts/seo-optimizer";
 
 export async function POST(req: NextRequest) {
@@ -24,25 +25,13 @@ export async function POST(req: NextRequest) {
     }
 
     const config = getSeoConfig(targetKeyword.trim(), contentType || "");
-    const result = await generate(config.systemPrompt, content, {
+
+    const gen = generateStream(config.systemPrompt, content, {
       maxTokens: config.maxTokens,
       temperature: config.temperature,
     });
 
-    try {
-      const parsed = JSON.parse(result);
-      return NextResponse.json(parsed);
-    } catch {
-      return NextResponse.json({
-        title: "",
-        metaDescription: "",
-        suggestions: ["AI returned unstructured data. Try a shorter input."],
-        keywordDensity: [],
-        headingStructure: [],
-        readabilityScore: "N/A",
-        optimizedContent: result,
-      });
-    }
+    return createStreamResponse(gen, req);
   } catch (err) {
     console.error("SEO optimizer error:", err instanceof Error ? err.message : "Unknown");
     return NextResponse.json({ error: "Failed to analyze content." }, { status: 500 });

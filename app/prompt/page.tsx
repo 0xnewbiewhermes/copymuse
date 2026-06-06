@@ -3,6 +3,8 @@
 import { useState, useCallback } from "react";
 import { generatePrompt, AI_TARGETS, type TargetAI } from "@/lib/prompts/prompt";
 import OutputDisplay from "@/components/OutputDisplay";
+import HistoryPanel from "@/components/HistoryPanel";
+import { saveToHistory } from "@/lib/history";
 
 export default function PromptPage() {
   const [targetAI, setTargetAI] = useState<TargetAI>("universal");
@@ -21,6 +23,7 @@ export default function PromptPage() {
     setTimeout(() => {
       const prompt = generatePrompt(request, targetAI);
       setOutput(prompt);
+      saveToHistory({ tool: "prompt", topic: request, content: prompt, charCount: [...prompt].length });
       setIsLoading(false);
     }, 300);
   }, [request, targetAI, isLoading]);
@@ -32,6 +35,7 @@ export default function PromptPage() {
       setTimeout(() => {
         const prompt = generatePrompt(lastRequest, targetAI);
         setOutput(prompt);
+        saveToHistory({ tool: "prompt", topic: lastRequest, content: prompt, charCount: [...prompt].length });
         setIsLoading(false);
       }, 300);
     }
@@ -101,6 +105,12 @@ export default function PromptPage() {
         isLoading={isLoading}
         showCharCount={false}
       />
+      <div className="mt-4">
+        <HistoryPanel
+          tool="prompt"
+          onSelect={(item) => setOutput(item.content)}
+        />
+      </div>
     </div>
   );
 }

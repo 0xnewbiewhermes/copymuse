@@ -3,11 +3,22 @@
 import { useState, useCallback } from "react";
 import GeneratorForm from "@/components/GeneratorForm";
 import OutputDisplay from "@/components/OutputDisplay";
+import HistoryPanel from "@/components/HistoryPanel";
+import { saveToHistory } from "@/lib/history";
+import { PLATFORMS, getCharLimit } from "@/lib/prompts/caption";
+import type { Platform } from "@/lib/prompts/caption";
 import type { Tone } from "@/lib/types";
 
 type StreamEvent = { type: "chunk"; content: string } | { type: "done" } | { type: "error"; content: string };
 
+const PLATFORM_LABELS: Record<Platform, string> = {
+  instagram: "Instagram",
+  twitter: "Twitter/X",
+  tiktok: "TikTok",
+};
+
 export default function CaptionPage() {
+  const [platform, setPlatform] = useState<Platform>("instagram");
   const [content, setContent] = useState("");
   const [charCount, setCharCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +41,7 @@ export default function CaptionPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           topic,
-          platform: "instagram",
+          platform,
           tone,
           customTone: tone === "custom" ? customTone : undefined,
           stream: true,
@@ -69,6 +80,7 @@ export default function CaptionPage() {
             setContent(full);
           } else if (event.type === "done") {
             setCharCount([...full].length);
+            saveToHistory({ tool: "caption", topic, content: full, charCount: [...full].length });
           } else if (event.type === "error") {
             throw new Error(event.content);
           }
@@ -80,7 +92,7 @@ export default function CaptionPage() {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [platform]);
 
   const handleRegenerate = useCallback(() => {
     if (lastTopic) handleGenerate(lastTopic, lastTone, lastCustomTone);
@@ -102,13 +114,41 @@ export default function CaptionPage() {
       </div>
 
       {/* Generator */}
-      <div className="max-w-xl mx-auto">
+      <div className="max-w-xl mx-auto space-y-5">
+        {/* Platform selector */}
+        <div className="space-y-2">
+          <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Platform</span>
+          <div className="flex gap-2" role="radiogroup" aria-label="Social platform">
+            {PLATFORMS.map((p) => (
+              <button
+                key={p}
+                type="button"
+                onClick={() => setPlatform(p)}
+                aria-pressed={platform === p}
+                className={`px-4 py-2 text-sm rounded-lg border transition-colors ${
+                  platform === p
+                    ? "bg-[var(--color-coral-accent)] text-white border-[var(--color-coral-accent)]"
+                    : "bg-white text-gray-600 border-gray-200 hover:border-[var(--color-coral-accent)]"
+                }`}
+              >
+                {PLATFORM_LABELS[p]}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <GeneratorForm
           onGenerate={handleGenerate}
           isLoading={isLoading}
           placeholder="What's your post about?"
           buttonLabel="Generate Caption"
         />
+
+        {platform !== "twitter" && (
+          <p className="text-[11px] text-gray-400 text-center">
+            Max {getCharLimit(platform).toLocaleString()} characters
+          </p>
+        )}
       </div>
 
       {/* Error */}
@@ -140,9 +180,19 @@ export default function CaptionPage() {
         <OutputDisplay
           content={content}
           charCount={charCount}
+          maxChars={getCharLimit(platform)}
           onRegenerate={handleRegenerate}
           isLoading={isLoading}
         />
+        <div className="mt-4">
+          <HistoryPanel
+            tool="caption"
+            onSelect={(item) => {
+              setContent(item.content);
+              setCharCount(item.charCount);
+            }}
+          />
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { generate } from "@/lib/ai-provider";
+import { generateStream } from "@/lib/ai-provider";
 import { checkRateLimit } from "@/lib/rate-limit";
+import { createStreamResponse } from "@/lib/stream-utils";
 import { getBlogConfig } from "@/lib/prompts/blog-writer";
 
 export async function POST(req: NextRequest) {
@@ -24,22 +25,12 @@ export async function POST(req: NextRequest) {
     const kw = Array.isArray(keywords) ? keywords.slice(0, 5).filter(Boolean) : [];
     const config = getBlogConfig(lengthIdx, kw, tone, customTone);
 
-    const result = await generate(config.systemPrompt, topic, {
+    const gen = generateStream(config.systemPrompt, topic, {
       maxTokens: config.maxTokens,
       temperature: config.temperature,
     });
 
-    try {
-      const parsed = JSON.parse(result);
-      return NextResponse.json(parsed);
-    } catch {
-      return NextResponse.json({
-        title: topic,
-        content: result,
-        keywords: kw,
-        estimatedReadTime: "5 min",
-      });
-    }
+    return createStreamResponse(gen, req);
   } catch (err) {
     console.error("Blog writer error:", err instanceof Error ? err.message : "Unknown");
     return NextResponse.json({ error: "Failed to generate blog post." }, { status: 500 });

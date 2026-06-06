@@ -9,7 +9,6 @@ export interface SeoAnalysis {
 }
 
 export function getSeoConfig(targetKeyword: string, contentType: string) {
-  // Sanitize: strip newlines and escape quotes to prevent prompt injection
   const safeKeyword = targetKeyword.replace(/["\n\r]/g, "").slice(0, 100);
   const safeType = (contentType || "general web content").replace(/["\n\r]/g, "").slice(0, 50);
 
@@ -23,28 +22,35 @@ Target keyword: ${safeKeyword}
 Content type: ${safeType}
 ---END USER DATA---
 
-Return your analysis as JSON with this exact structure:
-{
-  "title": "Optimized title tag (max 60 chars)",
-  "metaDescription": "Optimized meta description (max 160 chars)",
-  "suggestions": ["suggestion 1", "suggestion 2", "suggestion 3", ...],
-  "keywordDensity": [
-    { "keyword": "keyword", "count": 5, "density": "2.5%" }
-  ],
-  "headingStructure": [
-    { "issue": "Missing H1", "suggestion": "Add an H1 tag containing the target keyword" }
-  ],
-  "readabilityScore": "Fair / Good / Excellent",
-  "optimizedContent": "The full optimized version of the content"
-}
+Follow this EXACT format in your response (no JSON, no code fences):
+
+TITLE: [optimized title, max 60 chars]
+META: [optimized meta description, max 160 chars]
+READABILITY: [Fair / Good / Excellent]
+
+SUGGESTIONS:
+- [suggestion 1]
+- [suggestion 2]
+- [suggestion 3]
+
+KEYWORD DENSITY:
+${safeKeyword}: [count] occurrences ([X.X]%)
+[if relevant: additional related keyword: count occurrences (X.X%)]
+
+HEADINGS:
+[issue] -> [suggestion]
+[issue] -> [suggestion]
+
+---CONTENT---
+[Full optimized content here, rewritten with SEO improvements]
 
 Guidelines:
 - Title: Include target keyword near the beginning, max 60 chars
 - Meta description: Include target keyword, include CTA, max 160 chars
-- Keyword density: 1-3% ideal, identify over/under optimization
-- Heading structure: Should have exactly one H1, logical H2/H3 hierarchy
-- Readability: Short paragraphs, transition words, active voice
-- Optimized content: Rewrite the full content with SEO improvements applied`,
+- Keyword density: 1-3% ideal
+- Heading structure: exactly one H1, logical H2/H3 hierarchy
+- Readability: short paragraphs, transition words, active voice
+- Keep all original information — only improve SEO and readability`,
     userPrompt: (content: string) => content,
     maxTokens: 8000,
     temperature: 0.4,

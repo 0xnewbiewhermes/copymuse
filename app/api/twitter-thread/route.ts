@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { generate } from "@/lib/ai-provider";
+import { generateStream } from "@/lib/ai-provider";
 import { checkRateLimit } from "@/lib/rate-limit";
+import { createStreamResponse } from "@/lib/stream-utils";
 import { getThreadConfig } from "@/lib/prompts/twitter-thread";
 
 export async function POST(req: NextRequest) {
@@ -22,17 +23,13 @@ export async function POST(req: NextRequest) {
 
     const len = Math.min(Math.max(Number(threadLength) || 5, 3), 15);
     const config = getThreadConfig(tone, len);
-    const result = await generate(config.systemPrompt, topic, {
+
+    const gen = generateStream(config.systemPrompt, topic, {
       maxTokens: config.maxTokens,
       temperature: config.temperature,
     });
 
-    try {
-      const parsed = JSON.parse(result);
-      return NextResponse.json(parsed);
-    } catch {
-      return NextResponse.json({ tweets: [result], totalTweets: 1 });
-    }
+    return createStreamResponse(gen, req);
   } catch (err) {
     console.error("Thread error:", err instanceof Error ? err.message : "Unknown");
     return NextResponse.json({ error: "Failed to generate thread." }, { status: 500 });

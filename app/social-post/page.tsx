@@ -3,6 +3,8 @@
 import { useState, useCallback } from "react";
 import ToneSelector from "@/components/ToneSelector";
 import OutputDisplay from "@/components/OutputDisplay";
+import HistoryPanel from "@/components/HistoryPanel";
+import { saveToHistory } from "@/lib/history";
 import { SOCIAL_PLATFORMS, getCharLimit, type SocialPlatform } from "@/lib/prompts/social-post";
 import type { Tone } from "@/lib/types";
 
@@ -75,6 +77,7 @@ export default function SocialPostPage() {
             setContent(full);
           } else if (event.type === "done") {
             setCharCount([...full].length);
+            saveToHistory({ tool: "social-post", topic: inputTopic, content: full, charCount: [...full].length });
           } else if (event.type === "error") {
             throw new Error(event.content);
           }
@@ -170,6 +173,15 @@ export default function SocialPostPage() {
         onRegenerate={handleRegenerate}
         isLoading={isLoading}
       />
+      <div className="mt-4">
+        <HistoryPanel
+          tool="social-post"
+          onSelect={(item) => {
+            setContent(item.content);
+            setCharCount(item.charCount);
+          }}
+        />
+      </div>
     </div>
   );
 }

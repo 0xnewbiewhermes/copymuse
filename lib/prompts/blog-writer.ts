@@ -17,28 +17,15 @@ Write a blog post of ${lengthDesc} with tone: ${toneGuide}.
 
 Target keywords: ${safeKeywords.join(", ")}
 
-Structure:
-1. Engaging title (H1)
-2. Meta description (1-2 sentences)
-3. Introduction with hook
-4. 3-5 subheadings (H2) with content
-5. Conclusion with key takeaways
-6. FAQ section with 3-5 questions
+Format (strict):
+1. First line is the blog title ONLY — no prefix, no quotes, just the title
+2. A blank line
+3. The full blog post with ## headings (plain text), short paragraphs, and a FAQ section at the end
 
 Requirements:
 - Natural keyword integration (don't force)
-- Short paragraphs for readability
-- Data/examples where relevant
-- No markdown formatting in final output (use plain headings)
-
-Output as JSON:
-{
-  "title": "...",
-  "metaDescription": "...",
-  "content": "...",
-  "keywords": [...],
-  "estimatedReadTime": "..."
-}`,
+- No markdown formatting — use plain ## headings
+- No JSON, no code fences, no "Here's your post:" — output the content directly`,
     userPrompt: (topic: string) => topic,
     maxTokens: 8000,
     temperature: 0.8,
