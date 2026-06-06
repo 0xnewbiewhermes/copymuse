@@ -55,14 +55,14 @@ export default function MobileNav() {
           </div>
 
           {/* Navigation links */}
-          <div className="px-5 pt-8 pb-6">
+          <div className="px-5 pt-6 pb-6">
             <nav aria-label="Mobile navigation">
               {LINKS.map((link, i) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="block py-3.5 text-lg font-medium text-gray-800 hover:text-[var(--color-coral-accent)] transition-colors border-b border-gray-50"
+                  className="block py-3 text-base font-medium text-gray-800 hover:text-[var(--color-coral-accent)] transition-colors border-b border-gray-50"
                   style={{ animation: `fade-in 0.3s ease-out ${i * 60}ms both` }}
                 >
                   {link.label}
