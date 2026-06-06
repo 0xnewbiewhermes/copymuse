@@ -36,7 +36,7 @@ export default function Home() {
       {/* Tools Grid */}
       <div id="tools" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {TOOLS.map((tool, i) => (
-          <ToolCard key={tool.href} {...tool} delay={i} variant={tool.href === "/caption" ? "featured" : "default"} />
+          <ToolCard key={tool.href} {...tool} delay={i} />
         ))}
       </div>
     </div>
