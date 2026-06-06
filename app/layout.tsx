@@ -5,8 +5,8 @@ const SITE_URL = "https://www.copymuse.digital";
 
 export const metadata: Metadata = {
   title: {
-    default: "Copymuse — Free AI Content Tools",
-    template: "%s — Copymuse",
+    default: "Copymuse - Free AI Content Tools",
+    template: "%s - Copymuse",
   },
   description: "Free AI-powered content creation tools: captions, prompts, blog posts, Twitter threads, SEO optimization, and social media posts. No signup required.",
   metadataBase: new URL(SITE_URL),
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     apple: "/icon.svg",
   },
   openGraph: {
-    title: "Copymuse — Free AI Content Tools",
+    title: "Copymuse - Free AI Content Tools",
     description: "Create better content faster with AI. Free tools for captions, prompts, blog posts, threads, SEO, and social media.",
     type: "website",
     url: SITE_URL,
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Copymuse — Free AI Content Tools",
+    title: "Copymuse - Free AI Content Tools",
     description: "Create better content faster with AI. Free tools for captions, prompts, blog posts, threads, SEO, and social media.",
     creator: "@0xnewbiewhermes",
   },

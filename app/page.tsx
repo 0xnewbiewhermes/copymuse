@@ -21,7 +21,7 @@ export default function Home() {
           </span>
         </h1>
         <p className="text-base sm:text-lg text-[var(--color-text-secondary)] max-w-lg mx-auto leading-relaxed">
-          Captions, prompts, blog posts, threads, SEO, and social — all AI-powered, all free. No signup needed.
+          Captions, prompts, blog posts, threads, SEO, and social. All AI-powered, all free. No signup needed.
         </p>
         <div className="flex items-center justify-center gap-3 pt-2">
           <a href="/caption" className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[var(--color-coral-accent)] to-amber-500 hover:opacity-90 transition-opacity shadow-sm">

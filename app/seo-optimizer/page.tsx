@@ -185,7 +185,7 @@ export default function SeoOptimizerPage() {
                   <ul className="space-y-1">
                     {result.headingStructure.map((h, i) => (
                       <li key={i} className="text-sm text-gray-600">
-                        <span className="text-amber-600">⚠</span> {h.issue} → {h.suggestion}
+                        <span className="text-amber-600">*</span> {h.issue} - {h.suggestion}
                       </li>
                     ))}
                   </ul>
