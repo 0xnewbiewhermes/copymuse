@@ -16,7 +16,7 @@ if (process.env.GROQ_API_KEY) {
       baseURL: "https://api.groq.com/openai/v1",
       timeout: 30000,
     }),
-    model: "llama-3.3-70b-versatile",
+    model: "gpt-oss-120b",
   });
 }
 
@@ -28,7 +28,7 @@ if (process.env.OPENROUTER_API_KEY) {
       baseURL: "https://openrouter.ai/api/v1",
       timeout: 30000,
     }),
-    model: "mistralai/mistral-large",
+    model: "openrouter/owl-alpha",
   });
 }
 
