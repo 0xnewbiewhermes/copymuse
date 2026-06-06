@@ -1,20 +1,49 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const SITE_URL = "https://www.copymuse.digital";
+
 export const metadata: Metadata = {
-  title: "Copymuse — Free AI Content Tools",
+  title: {
+    default: "Copymuse — Free AI Content Tools",
+    template: "%s — Copymuse",
+  },
   description: "Free AI-powered content creation tools: captions, prompts, blog posts, Twitter threads, SEO optimization, and social media posts. No signup required.",
-  metadataBase: new URL("https://copymuse.digital"),
+  metadataBase: new URL(SITE_URL),
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
   openGraph: {
     title: "Copymuse — Free AI Content Tools",
     description: "Create better content faster with AI. Free tools for captions, prompts, blog posts, threads, SEO, and social media.",
     type: "website",
+    url: SITE_URL,
+    siteName: "Copymuse",
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     title: "Copymuse — Free AI Content Tools",
     description: "Create better content faster with AI. Free tools for captions, prompts, blog posts, threads, SEO, and social media.",
+    creator: "@0xnewbiewhermes",
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "YOUR_GOOGLE_VERIFICATION", // Replace with actual code from Search Console
+  },
+  category: "technology",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -29,7 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@type": "WebApplication",
               name: "Copymuse",
               description: "Free AI-powered content creation tools",
-              url: "https://copymuse.digital",
+              url: "https://www.copymuse.digital",
               applicationCategory: "UtilitiesApplication",
               operatingSystem: "Web",
               offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
