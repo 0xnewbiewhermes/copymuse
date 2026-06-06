@@ -135,7 +135,11 @@ export default function SocialPostPage() {
                       : "bg-white text-gray-600 border-gray-200 hover:border-[var(--color-coral-accent)]"
                   }`}
                 >
-                  {p.icon} {p.label}
+                  {p.icon.startsWith("/") ? (
+                    <img src={p.icon} alt="" className="w-5 h-5" />
+                  ) : (
+                    <span>{p.icon}</span>
+                  )} {p.label}
                 </button>
               ))}
             </div>

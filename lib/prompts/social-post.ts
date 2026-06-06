@@ -1,10 +1,10 @@
 export type SocialPlatform = "linkedin" | "instagram" | "twitter" | "tiktok";
 
 export const SOCIAL_PLATFORMS: { id: SocialPlatform; label: string; icon: string }[] = [
-  { id: "linkedin", label: "LinkedIn", icon: "💼" },
-  { id: "instagram", label: "Instagram", icon: "📸" },
-  { id: "twitter", label: "Twitter/X", icon: "🐦" },
-  { id: "tiktok", label: "TikTok", icon: "🎵" },
+  { id: "linkedin", label: "LinkedIn", icon: "/linkedin.svg" },
+  { id: "instagram", label: "Instagram", icon: "/instagram-icon.svg" },
+  { id: "twitter", label: "Twitter/X", icon: "/x.svg" },
+  { id: "tiktok", label: "TikTok", icon: "/tiktok-icon-light.svg" },
 ];
 
 const PLATFORM_GUIDES: Record<SocialPlatform, { rules: string; charLimit: number }> = {
