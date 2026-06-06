@@ -129,7 +129,7 @@ export default function SocialPostPage() {
                   type="button"
                   onClick={() => setPlatform(p.id)}
                   aria-pressed={platform === p.id}
-                  className={`px-4 py-2 text-sm rounded-lg border transition-colors ${
+                  className={`px-4 py-2 text-sm rounded-lg border transition-colors inline-flex items-center gap-2 ${
                     platform === p.id
                       ? "bg-[var(--color-coral-accent)] text-white border-[var(--color-coral-accent)]"
                       : "bg-white text-gray-600 border-gray-200 hover:border-[var(--color-coral-accent)]"
@@ -139,7 +139,8 @@ export default function SocialPostPage() {
                     <img src={p.icon} alt="" className="w-5 h-5" />
                   ) : (
                     <span>{p.icon}</span>
-                  )} {p.label}
+                  )}
+                  <span>{p.label}</span>
                 </button>
               ))}
             </div>
