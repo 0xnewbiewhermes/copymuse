@@ -43,7 +43,7 @@ export default function GeneratorForm({
         />
       )}
 
-      <div className="flex gap-2">
+      <div className="flex flex-col sm:flex-row gap-2">
         <input
           type="text"
           value={topic}
@@ -57,7 +57,7 @@ export default function GeneratorForm({
         <button
           type="submit"
           disabled={isLoading || !topic.trim()}
-          className="px-4 py-2.5 text-sm font-semibold rounded-full text-white bg-[var(--color-coral-accent)] hover:bg-[var(--color-coral-600)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-colors"
+          className="w-full sm:w-auto px-4 py-2.5 text-sm font-semibold rounded-full text-white bg-[var(--color-coral-accent)] hover:bg-[var(--color-coral-600)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors"
         >
           {isLoading ? (
             <span className="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />

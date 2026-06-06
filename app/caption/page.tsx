@@ -89,14 +89,14 @@ export default function CaptionPage() {
   return (
     <div className="space-y-10">
       {/* Page header */}
-      <div className="text-center max-w-lg mx-auto space-y-2">
-        <span className="inline-block px-2.5 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider text-[var(--color-coral-accent)] bg-[var(--color-coral-light)]">
+      <div className="text-center max-w-lg mx-auto space-y-1.5 sm:space-y-2">
+        <span className="inline-block px-2 py-0.5 rounded text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-[var(--color-coral-accent)] bg-[var(--color-coral-light)]">
           Tool
         </span>
-        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[var(--color-text)]">
+        <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-[var(--color-text)]">
           Caption Generator
         </h1>
-        <p className="text-sm text-[var(--color-text-secondary)]">
+        <p className="text-xs sm:text-sm text-[var(--color-text-secondary)]">
           Instagram, Twitter, and TikTok captions in seconds
         </p>
       </div>

@@ -80,6 +80,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/seo-optimizer" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-all">SEO</a>
               <a href="/social-post" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-all">Social</a>
             </div>
+            {/* Mobile nav — compact icons */}
+            <div className="flex sm:hidden gap-1 text-xs">
+              <a href="/caption" className="px-2 py-1 rounded-full text-gray-400 hover:text-gray-600 transition-colors" title="Caption">📝</a>
+              <a href="/prompt" className="px-2 py-1 rounded-full text-gray-400 hover:text-gray-600 transition-colors" title="Prompt">✨</a>
+              <a href="/blog-writer" className="px-2 py-1 rounded-full text-gray-400 hover:text-gray-600 transition-colors" title="Blog">📄</a>
+              <a href="/twitter-thread" className="px-2 py-1 rounded-full text-gray-400 hover:text-gray-600 transition-colors" title="Thread">🧵</a>
+              <a href="/seo-optimizer" className="px-2 py-1 rounded-full text-gray-400 hover:text-gray-600 transition-colors" title="SEO">🔍</a>
+              <a href="/social-post" className="px-2 py-1 rounded-full text-gray-400 hover:text-gray-600 transition-colors" title="Social">📢</a>
+            </div>
           </nav>
           {children}
 
