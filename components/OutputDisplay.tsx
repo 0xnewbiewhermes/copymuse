@@ -57,8 +57,8 @@ export default function OutputDisplay({
         )}
       </div>
 
-      <div className="p-5 border border-gray-200 rounded-xl bg-gray-50">
-        <pre className="whitespace-pre-wrap text-sm text-gray-900 leading-relaxed font-sans">
+      <div className="p-4 sm:p-5 border border-gray-200 rounded-xl bg-gray-50">
+        <pre className="whitespace-pre-wrap break-words text-sm text-gray-900 leading-relaxed font-sans">
           {content}
         </pre>
       </div>

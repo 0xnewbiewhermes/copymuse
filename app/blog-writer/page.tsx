@@ -101,7 +101,7 @@ export default function BlogWriterPage() {
 
         <div className="space-y-2">
           <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Length</span>
-          <div className="flex gap-2" role="radiogroup" aria-label="Post length">
+          <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Post length">
             {LENGTH_LABELS.map((label, i) => (
               <button
                 key={label}

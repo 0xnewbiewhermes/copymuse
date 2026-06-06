@@ -93,13 +93,13 @@ export default function TwitterThreadPage() {
       <div className="space-y-4">
         <div className="space-y-2">
           <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Thread Length</span>
-          <div className="flex gap-2" role="radiogroup" aria-label="Thread length">
+          <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Thread length">
             {LENGTH_OPTIONS.map((n) => (
               <button
                 key={n}
                 onClick={() => setThreadLength(n)}
                 aria-pressed={threadLength === n}
-                className={`px-3 py-1.5 text-sm rounded-full border transition-colors ${
+                className={`px-2.5 sm:px-3 py-1.5 text-xs sm:text-sm rounded-full border transition-colors ${
                   threadLength === n ? "bg-gray-900 text-white border-gray-900" : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
                 }`}
               >

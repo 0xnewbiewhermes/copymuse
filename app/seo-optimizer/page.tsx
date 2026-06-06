@@ -237,7 +237,7 @@ export default function SeoOptimizerPage() {
       {(analysis || optimizedContent) && (
         <div className="space-y-6 animate-in">
           {/* Tab toggle */}
-          <div className="flex gap-2 border-b border-gray-200 pb-2">
+          <div className="flex flex-wrap gap-2 border-b border-gray-200 pb-2">
             <button
               onClick={() => setActiveTab("analysis")}
               className={`text-sm font-medium px-3 py-1 rounded-lg transition-colors ${

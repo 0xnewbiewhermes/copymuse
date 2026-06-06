@@ -51,13 +51,13 @@ export default function PromptPage() {
       <div className="space-y-4">
         <div className="space-y-2">
           <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Target AI</span>
-          <div className="flex gap-2" role="radiogroup" aria-label="Target AI">
+          <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Target AI">
             {AI_TARGETS.map((ai) => (
               <button
                 key={ai.id}
                 onClick={() => setTargetAI(ai.id)}
                 aria-pressed={targetAI === ai.id}
-                className={`px-4 py-2 text-sm rounded-lg border transition-colors inline-flex items-center gap-2 ${
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm rounded-lg border transition-colors inline-flex items-center gap-1.5 sm:gap-2 ${
                   targetAI === ai.id
                     ? "bg-gray-900 text-white border-gray-900"
                     : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
