@@ -118,8 +118,8 @@ export function generatePrompt(request: string, target: TargetAI): string {
 }
 
 export const AI_TARGETS: { id: TargetAI; label: string; icon: string }[] = [
-  { id: "chatgpt", label: "ChatGPT", icon: "🤖" },
-  { id: "claude", label: "Claude", icon: "🧠" },
-  { id: "gemini", label: "Gemini", icon: "✨" },
+  { id: "chatgpt", label: "ChatGPT", icon: "/logo-chatgpt.svg" },
+  { id: "claude", label: "Claude", icon: "/logo-claude.svg" },
+  { id: "gemini", label: "Gemini", icon: "/logo-gemini.svg" },
   { id: "universal", label: "Universal", icon: "🌍" },
 ];

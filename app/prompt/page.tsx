@@ -40,7 +40,6 @@ export default function PromptPage() {
   return (
     <div className="space-y-8">
       <div className="text-center max-w-lg mx-auto space-y-3">
-        <img src="/prompt-logo.svg" alt="Prompt Generator" className="w-10 h-10 mx-auto" />
         <h1 className="text-2xl font-bold">AI Master Prompt Generator</h1>
         <p className="text-sm text-gray-500">Generate optimized prompts for ChatGPT, Claude, Gemini, and more</p>
       </div>
@@ -54,13 +53,18 @@ export default function PromptPage() {
                 key={ai.id}
                 onClick={() => setTargetAI(ai.id)}
                 aria-pressed={targetAI === ai.id}
-                className={`px-4 py-2 text-sm rounded-lg border transition-colors ${
+                className={`px-4 py-2 text-sm rounded-lg border transition-colors inline-flex items-center gap-2 ${
                   targetAI === ai.id
                     ? "bg-gray-900 text-white border-gray-900"
                     : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
                 }`}
               >
-                {ai.icon} {ai.label}
+                {ai.icon.startsWith("/") ? (
+                  <img src={ai.icon} alt="" className="w-5 h-5" />
+                ) : (
+                  <span>{ai.icon}</span>
+                )}
+                <span>{ai.label}</span>
               </button>
             ))}
           </div>
