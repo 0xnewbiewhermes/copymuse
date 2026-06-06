@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { generate } from "@/lib/ai-provider";
 import { checkRateLimit } from "@/lib/rate-limit";
-import { getBlogConfig, LENGTHS } from "@/lib/prompts/blog-writer";
+import { getBlogConfig } from "@/lib/prompts/blog-writer";
 
 export async function POST(req: NextRequest) {
   const rateCheck = checkRateLimit(req);
