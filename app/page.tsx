@@ -1,12 +1,31 @@
 import ToolCard from "@/components/ToolCard";
 
+function IconPen() {
+  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden={true}><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>;
+}
+function IconSparkle() {
+  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden={true}><path d="M12 3v4m0 10v4M5 12H3m18 0h-2M7.05 7.05 5.64 5.64m12.72 12.72-1.41-1.41M7.05 16.95l-1.41 1.41M16.95 7.05l1.41-1.41"/></svg>;
+}
+function IconDoc() {
+  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden={true}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h8M10 9H8"/></svg>;
+}
+function IconThread() {
+  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden={true}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h6"/></svg>;
+}
+function IconSearch() {
+  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>;
+}
+function IconMegaphone() {
+  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden={true}><path d="m3 11 18-5v12L3 13v-2Z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>;
+}
+
 const TOOLS = [
-  { title: "Caption Generator", description: "Instagram, Twitter, and TikTok captions.", href: "/caption", icon: "📝" },
-  { title: "Master Prompt Generator", description: "Optimized prompts for ChatGPT, Claude, Gemini.", href: "/prompt", icon: "✨" },
-  { title: "Blog Writer", description: "SEO-optimized blog posts with AI.", href: "/blog-writer", icon: "📄" },
-  { title: "Twitter Thread Generator", description: "Engaging Twitter/X threads from any topic.", href: "/twitter-thread", icon: "🧵" },
-  { title: "SEO Optimizer", description: "Analyze & optimize for search rankings.", href: "/seo-optimizer", icon: "🔍" },
-  { title: "Social Post Generator", description: "LinkedIn, IG, Twitter & TikTok posts.", href: "/social-post", icon: "📢" },
+  { title: "Caption Generator", description: "Instagram, Twitter, and TikTok captions.", href: "/caption", icon: <IconPen /> },
+  { title: "Master Prompt Generator", description: "Optimized prompts for ChatGPT, Claude, Gemini.", href: "/prompt", icon: <IconSparkle /> },
+  { title: "Blog Writer", description: "SEO-optimized blog posts with AI.", href: "/blog-writer", icon: <IconDoc /> },
+  { title: "Twitter Thread Generator", description: "Engaging Twitter/X threads from any topic.", href: "/twitter-thread", icon: <IconThread /> },
+  { title: "SEO Optimizer", description: "Analyze & optimize for search rankings.", href: "/seo-optimizer", icon: <IconSearch /> },
+  { title: "Social Post Generator", description: "LinkedIn, IG, Twitter & TikTok posts.", href: "/social-post", icon: <IconMegaphone /> },
 ];
 
 export default function Home() {
