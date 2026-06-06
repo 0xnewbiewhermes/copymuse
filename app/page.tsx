@@ -14,9 +14,6 @@ export default function Home() {
     <div className="space-y-12">
       {/* Hero */}
       <div className="text-center pt-8 sm:pt-16 pb-4 animate-in-up space-y-5">
-        <span className="inline-block px-3.5 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-[var(--color-coral-light)] text-[var(--color-coral-accent)]">
-          ✦ 6 Free AI Tools
-        </span>
         <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-[1.1] text-[var(--color-text)]">
           Create Content That<br />
           <span className="bg-gradient-to-r from-[var(--color-coral-accent)] to-amber-400 bg-clip-text text-transparent">
