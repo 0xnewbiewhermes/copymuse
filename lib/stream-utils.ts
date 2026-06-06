@@ -6,7 +6,7 @@ export function createStreamResponse(
 ): Response {
   const encoder = new TextEncoder();
   const abort = new AbortController();
-  req.signal.addEventListener("abort", () => abort.abort());
+  req.signal.addEventListener("abort", () => abort.abort(), { once: true });
 
   const stream = new ReadableStream({
     async start(controller) {
@@ -17,8 +17,9 @@ export function createStreamResponse(
         }
         controller.enqueue(encoder.encode(JSON.stringify({ type: "done" }) + "\n"));
       } catch (err) {
-        const msg = err instanceof Error ? err.message : "Generation failed";
-        controller.enqueue(encoder.encode(JSON.stringify({ type: "error", content: msg }) + "\n"));
+        const realMsg = err instanceof Error ? err.message : "Generation failed";
+        console.error("[Stream] Generation error:", realMsg);
+        controller.enqueue(encoder.encode(JSON.stringify({ type: "error", content: "Generation failed. Please try again." }) + "\n"));
       } finally {
         controller.close();
       }

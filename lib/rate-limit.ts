@@ -8,7 +8,7 @@ const DAILY_WINDOW = 24 * 60 * 60_000;
 
 function getClientIp(req: NextRequest): string {
   const ip = req.headers.get("x-real-ip")
-    ?? req.headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim();
+    ?? req.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
   if (ip) return ip;
   const ua = req.headers.get("user-agent") || "no-ua";
   return `anon:${ua}`;
