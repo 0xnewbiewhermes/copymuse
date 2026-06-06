@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { generateStream, generate } from "@/lib/ai-provider";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { createStreamResponse } from "@/lib/stream-utils";
-import { getSystemPrompt, type Platform, PLATFORMS } from "@/lib/prompts/caption";
+import { getSystemPrompt, PLATFORMS } from "@/lib/prompts/caption";
 
 export async function POST(req: NextRequest) {
   const rateCheck = checkRateLimit(req);
