@@ -71,7 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="antialiased min-h-screen bg-white text-[var(--color-text)]">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 py-4 sm:py-6">
-          <nav className="relative flex items-center justify-between mb-12 pb-5 border-b border-gray-100" aria-label="Main navigation">
+          <nav className="flex items-center justify-between mb-12 pb-5 border-b border-gray-100" aria-label="Main navigation">
             <a href="/" className="font-extrabold text-xl tracking-tight text-[var(--color-coral-accent)] hover:opacity-80 transition-opacity">
               Copymuse
             </a>
