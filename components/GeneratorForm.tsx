@@ -52,6 +52,7 @@ export default function GeneratorForm({
           maxLength={maxLength}
           className="flex-1 px-4 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
           disabled={isLoading}
+          aria-label="Topic"
         />
         <button
           type="submit"

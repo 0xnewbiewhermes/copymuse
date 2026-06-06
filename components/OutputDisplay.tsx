@@ -49,7 +49,7 @@ export default function OutputDisplay({
   return (
     <div className="space-y-4 animate-in">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Result</span>
+        <h2 className="text-xs font-medium text-gray-500 uppercase tracking-wider">Result</h2>
         {showCharCount && (
           <span className="text-xs tabular-nums text-gray-400">
             {charCount}{maxChars ? ` / ${maxChars}` : ""}
@@ -74,6 +74,7 @@ export default function OutputDisplay({
         <button
           onClick={onRegenerate}
           disabled={isLoading}
+          aria-label="Regenerate"
           className="px-4 py-2 border border-gray-200 text-sm font-medium rounded-lg hover:bg-gray-50 disabled:opacity-50 transition-colors"
         >
           <IconRefresh className={`w-4 h-4 ${isLoading ? "animate-spin" : ""}`} />

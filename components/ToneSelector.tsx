@@ -24,11 +24,12 @@ interface Props {
 export default function ToneSelector({ selected, onSelect, customTone, onCustomToneChange }: Props) {
   return (
     <div className="space-y-3">
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Tone">
         {TONES.map((t) => (
           <button
             key={t.id}
             onClick={() => onSelect(t.id)}
+            aria-pressed={selected === t.id}
             className={`px-3 py-1.5 text-sm rounded-full border transition-colors ${
               selected === t.id
                 ? "bg-gray-900 text-white border-gray-900"
@@ -47,6 +48,7 @@ export default function ToneSelector({ selected, onSelect, customTone, onCustomT
           placeholder="Describe your desired tone..."
           className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
           maxLength={200}
+          aria-label="Custom tone description"
         />
       )}
     </div>
