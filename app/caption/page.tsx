@@ -13,12 +13,16 @@ export default function CaptionPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [lastTopic, setLastTopic] = useState("");
+  const [lastTone, setLastTone] = useState<Tone>("casual");
+  const [lastCustomTone, setLastCustomTone] = useState("");
 
   const handleGenerate = useCallback(async (topic: string, tone: Tone, customTone: string) => {
     setIsLoading(true);
     setError(null);
     setContent("");
     setLastTopic(topic);
+    setLastTone(tone);
+    setLastCustomTone(customTone);
 
     try {
       const res = await fetch("/api/caption", {
@@ -79,8 +83,8 @@ export default function CaptionPage() {
   }, []);
 
   const handleRegenerate = useCallback(() => {
-    if (lastTopic) handleGenerate(lastTopic, "casual", "");
-  }, [lastTopic, handleGenerate]);
+    if (lastTopic) handleGenerate(lastTopic, lastTone, lastCustomTone);
+  }, [lastTopic, lastTone, lastCustomTone, handleGenerate]);
 
   return (
     <div className="space-y-8">
@@ -103,7 +107,7 @@ export default function CaptionPage() {
       )}
 
       {isLoading && !content && (
-        <div className="p-8 text-center text-sm text-gray-400">
+        <div className="p-8 text-center text-sm text-gray-400" role="status">
           <span className="inline-block w-5 h-5 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin mr-2" />
           Generating caption...
         </div>

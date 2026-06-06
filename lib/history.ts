@@ -31,7 +31,7 @@ export function saveToHistory(item: Omit<HistoryItem, "id" | "favorite" | "creat
   history.unshift(newItem);
 
   if (history.length > MAX_ITEMS) {
-    const favorites = history.filter((h) => h.favorite);
+    const favorites = history.filter((h) => h.favorite).slice(0, MAX_ITEMS);
     const nonFavorites = history.filter((h) => !h.favorite).slice(0, MAX_ITEMS - favorites.length);
     const trimmed = [...favorites, ...nonFavorites].sort((a, b) => b.createdAt - a.createdAt);
     localStorage.setItem(`copymuse_history_${item.tool}`, JSON.stringify(trimmed));
