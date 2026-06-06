@@ -39,18 +39,20 @@ export default function MobileNav() {
             onClick={() => setOpen(false)}
             aria-hidden={true}
           />
-          {/* Menu */}
-          <div className="absolute left-0 right-0 top-full z-20 mt-2 mx-4 bg-white border border-gray-100 rounded-xl shadow-lg overflow-hidden animate-in">
-            {LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="block px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-[var(--color-coral-accent)] transition-colors border-b border-gray-50 last:border-0"
-              >
-                {link.label}
-              </a>
-            ))}
+          {/* Menu — right-aligned dropdown */}
+          <div className="absolute right-0 top-full z-20 mt-2 w-48 bg-white border border-gray-100 rounded-lg shadow-lg overflow-hidden">
+            <div className="py-1">
+              {LINKS.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-[var(--color-coral-accent)] transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
           </div>
         </>
       )}
