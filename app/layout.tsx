@@ -43,11 +43,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <a href="/" className="font-bold text-lg tracking-tight hover:text-gray-600 transition-colors">
               Copymuse
             </a>
-            <div className="flex gap-4 text-sm text-gray-500">
+            <div className="hidden sm:flex gap-4 text-sm text-gray-500">
               <a href="/caption" className="hover:text-gray-800 transition-colors">Caption</a>
               <a href="/prompt" className="hover:text-gray-800 transition-colors">Prompt</a>
               <a href="/blog-writer" className="hover:text-gray-800 transition-colors">Blog</a>
               <a href="/twitter-thread" className="hover:text-gray-800 transition-colors">Thread</a>
+              <a href="/seo-optimizer" className="hover:text-gray-800 transition-colors">SEO</a>
+              <a href="/social-post" className="hover:text-gray-800 transition-colors">Social</a>
             </div>
           </nav>
           {children}

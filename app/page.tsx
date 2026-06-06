@@ -5,6 +5,8 @@ const TOOLS = [
   { title: "Master Prompt Generator", description: "Create optimized prompts for ChatGPT, Claude, Gemini, and more.", href: "/prompt", icon: "✨" },
   { title: "Blog Writer", description: "Write SEO-optimized blog posts with AI assistance.", href: "/blog-writer", icon: "📄" },
   { title: "Twitter Thread Generator", description: "Create engaging Twitter/X threads from any topic.", href: "/twitter-thread", icon: "🧵" },
+  { title: "SEO Optimizer", description: "Analyze and optimize your content for better search rankings.", href: "/seo-optimizer", icon: "🔍" },
+  { title: "Social Post Generator", description: "Generate platform-optimized posts for LinkedIn, Instagram, Twitter, and TikTok.", href: "/social-post", icon: "📢" },
 ];
 
 export default function Home() {
