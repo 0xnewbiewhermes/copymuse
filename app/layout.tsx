@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "YOUR_GOOGLE_VERIFICATION", // Replace with actual code from Search Console
+    google: "qD56RsCo1emAfAszPQudXAlFCo3TzAheHmqKezBIrJc", // Replace with actual code from Search Console
   },
   category: "technology",
 };
