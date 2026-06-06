@@ -16,7 +16,7 @@ if (process.env.GROQ_API_KEY) {
       baseURL: "https://api.groq.com/openai/v1",
       timeout: 30000,
     }),
-    model: "gpt-oss-120b",
+    model: "openai/gpt-oss-120b",
   });
 }
 
