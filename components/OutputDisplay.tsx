@@ -64,7 +64,7 @@ export default function OutputDisplay({
       </div>
 
       <div className="flex gap-3">
-        <button onClick={handleCopy} className="flex-1 px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 flex items-center justify-center gap-2 transition-colors">
+        <button onClick={handleCopy} className="flex-1 px-4 py-2 text-sm font-semibold rounded-full text-white bg-gradient-to-r from-[var(--color-coral-accent)] to-amber-500 hover:opacity-90 flex items-center justify-center gap-2 transition-all shadow-sm">
           {copied ? (
             <><IconCheck className="w-4 h-4" /> Copied</>
           ) : (
@@ -75,7 +75,7 @@ export default function OutputDisplay({
           onClick={onRegenerate}
           disabled={isLoading}
           aria-label="Regenerate"
-          className="px-4 py-2 border border-gray-200 text-sm font-medium rounded-lg hover:bg-gray-50 disabled:opacity-50 transition-colors"
+          className="px-4 py-2 border border-gray-200 text-sm font-medium rounded-full hover:bg-gray-50 disabled:opacity-50 transition-colors"
         >
           <IconRefresh className={`w-4 h-4 ${isLoading ? "animate-spin" : ""}`} />
         </button>

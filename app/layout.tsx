@@ -37,19 +37,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className="antialiased min-h-screen bg-white text-gray-900">
-        <div className="mx-auto max-w-4xl px-4 py-6">
-          <nav className="flex items-center justify-between mb-10 pb-4 border-b border-gray-100" aria-label="Main navigation">
-            <a href="/" className="font-bold text-lg tracking-tight hover:text-gray-600 transition-colors">
+      <body className="antialiased min-h-screen bg-white text-[var(--color-text)]">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 py-4 sm:py-6">
+          <nav className="flex items-center justify-between mb-12 pb-5 border-b border-gray-100" aria-label="Main navigation">
+            <a href="/" className="font-extrabold text-xl tracking-tight bg-gradient-to-r from-[var(--color-coral-accent)] to-amber-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
               Copymuse
             </a>
-            <div className="hidden sm:flex gap-4 text-sm text-gray-500">
-              <a href="/caption" className="hover:text-gray-800 transition-colors">Caption</a>
-              <a href="/prompt" className="hover:text-gray-800 transition-colors">Prompt</a>
-              <a href="/blog-writer" className="hover:text-gray-800 transition-colors">Blog</a>
-              <a href="/twitter-thread" className="hover:text-gray-800 transition-colors">Thread</a>
-              <a href="/seo-optimizer" className="hover:text-gray-800 transition-colors">SEO</a>
-              <a href="/social-post" className="hover:text-gray-800 transition-colors">Social</a>
+            <div className="hidden sm:flex gap-1 text-sm">
+              <a href="/caption" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-all">Caption</a>
+              <a href="/prompt" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-all">Prompt</a>
+              <a href="/blog-writer" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-all">Blog</a>
+              <a href="/twitter-thread" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-all">Thread</a>
+              <a href="/seo-optimizer" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-all">SEO</a>
+              <a href="/social-post" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-all">Social</a>
             </div>
           </nav>
           {children}

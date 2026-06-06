@@ -30,10 +30,10 @@ export default function ToneSelector({ selected, onSelect, customTone, onCustomT
             key={t.id}
             onClick={() => onSelect(t.id)}
             aria-pressed={selected === t.id}
-            className={`px-3 py-1.5 text-sm rounded-full border transition-colors ${
+            className={`px-3 py-1.5 text-sm rounded-full border transition-all ${
               selected === t.id
-                ? "bg-gray-900 text-white border-gray-900"
-                : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
+                ? "bg-[var(--color-coral-accent)] text-white border-[var(--color-coral-accent)]"
+                : "bg-white text-gray-600 border-gray-200 hover:border-[var(--color-coral-accent)] hover:text-[var(--color-coral-accent)]"
             }`}
           >
             {t.label}
@@ -46,7 +46,7 @@ export default function ToneSelector({ selected, onSelect, customTone, onCustomT
           value={customTone}
           onChange={(e) => onCustomToneChange(e.target.value)}
           placeholder="Describe your desired tone..."
-          className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
+          className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-coral-accent)]/30 focus:border-[var(--color-coral-accent)]"
           maxLength={200}
           aria-label="Custom tone description"
         />

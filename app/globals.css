@@ -1,10 +1,45 @@
 @import "tailwindcss";
 
+@theme {
+  --color-coral-50: #fef2ee;
+  --color-coral-100: #fde0d7;
+  --color-coral-200: #fbc0ae;
+  --color-coral-300: #f8997c;
+  --color-coral-400: #f4714f;
+  --color-coral-500: #e85d3a;
+  --color-coral-600: #d64a2a;
+  --color-coral-700: #b33a22;
+  --color-coral-800: #8f3020;
+  --color-coral-900: #752a1e;
+  --color-coral-accent: #e85d3a;
+  --color-coral-light: #fef2ee;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f9fafb;
+  --color-border: #e5e7eb;
+  --color-border-hover: #d1d5db;
+  --color-text: #111827;
+  --color-text-secondary: #6b7280;
+  --color-text-tertiary: #9ca3af;
+}
+
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(4px); }
+  from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
 }
 
 .animate-in {
   animation: fade-in 0.3s ease-out;
+}
+
+.animate-in-up {
+  animation: fade-in-up 0.4s ease-out;
 }

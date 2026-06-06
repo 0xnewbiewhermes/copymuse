@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Copymuse Design Direction</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #f8f9fa; padding: 40px; }
+
+.header { text-align: center; margin-bottom: 48px; }
+.header h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+.header p { color: #6b7280; font-size: 14px; margin-top: 8px; }
+
+.flex { display: flex; gap: 32px; justify-content: center; }
+.col { flex: 1; max-width: 520px; }
+
+/* ── DIRECTION A: Warm & Creative ── */
+.dir-a {
+  --accent: #e85d3a;
+  --accent-light: #fdf2ef;
+  --accent-bg: linear-gradient(135deg, #e85d3a 0%, #f59e0b 100%);
+  --nav-active: #e85d3a;
+  --card-border: #f0e6e3;
+  --card-hover: #fdf2ef;
+  --text: #1a1a2e;
+  --muted: #8b7f7a;
+}
+.dir-a .mockup { border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(232,93,58,0.12); background: white; }
+
+/* ── DIRECTION B: Clean & Professional ── */
+.dir-b {
+  --accent: #4f46e5;
+  --accent-light: #eef2ff;
+  --accent-bg: linear-gradient(135deg, #1e1b4b 0%, #4f46e5 100%);
+  --nav-active: #4f46e5;
+  --card-border: #e0e7ff;
+  --card-hover: #eef2ff;
+  --text: #0f172a;
+  --muted: #64748b;
+}
+.dir-b .mockup { border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(79,70,229,0.1); background: white; border: 1px solid #e2e8f0; }
+
+/* Mockup Header */
+.mockup-header { padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--card-border); }
+.mockup-logo { font-weight: 800; font-size: 18px; letter-spacing: -0.5px; background: var(--accent-bg); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.mockup-nav { display: flex; gap: 4px; }
+.mockup-nav a { padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 500; color: var(--muted); text-decoration: none; transition: all 0.2s; }
+.mockup-nav a.active { background: var(--accent-light); color: var(--accent); font-weight: 600; }
+
+/* Hero */
+.hero { padding: 48px 32px 40px; text-align: center; }
+.hero-tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; background: var(--accent-light); color: var(--accent); margin-bottom: 16px; }
+.hero h2 { font-size: 32px; font-weight: 800; line-height: 1.15; letter-spacing: -1px; color: var(--text); }
+.hero h2 span { background: var(--accent-bg); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero p { color: var(--muted); font-size: 14px; max-width: 360px; margin: 12px auto 24px; line-height: 1.6; }
+.hero-cta { display: inline-flex; align-items: center; gap: 8px; padding: 10px 28px; border-radius: 40px; font-size: 13px; font-weight: 600; color: white; border: none; cursor: pointer; background: var(--accent-bg); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+/* Features grid */
+.features { padding: 0 24px 32px; }
+.features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.feature-card { padding: 16px; border-radius: 10px; border: 1px solid var(--card-border); transition: all 0.25s; cursor: pointer; }
+.feature-card:hover { border-color: var(--accent); background: var(--card-hover); transform: translateY(-1px); }
+.feature-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; background: var(--accent-light); margin-bottom: 8px; }
+.feature-card h3 { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.feature-card p { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+/* Stats */
+.stats { display: flex; justify-content: center; gap: 32px; padding: 20px 24px; border-top: 1px solid var(--card-border); }
+.stat { text-align: center; }
+.stat-num { font-size: 18px; font-weight: 800; color: var(--text); }
+.stat-label { font-size: 11px; color: var(--muted); }
+
+/* Label under each column */
+.col-label { text-align: center; margin-bottom: 16px; }
+.col-label h3 { font-size: 18px; font-weight: 700; }
+.col-label p { font-size: 12px; color: #6b7280; margin-top: 4px; }
+
+/* Tool page mockup */
+.tool-preview { margin-top: 40px; }
+.tool-preview .mockup-header { border-bottom: 1px solid var(--card-border); }
+.tool-body { padding: 32px; }
+.tool-body h3 { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.tool-body .sub { font-size: 12px; color: var(--muted); margin-bottom: 20px; }
+
+.form-group { margin-bottom: 14px; }
+.form-label { display: block; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 6px; }
+.tone-pills { display: flex; flex-wrap: wrap; gap: 4px; }
+.tone-pill { padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 500; border: 1px solid var(--card-border); background: white; color: var(--text); cursor: pointer; }
+.tone-pill.active { background: var(--accent); color: white; border-color: var(--accent); }
+
+.input-row { display: flex; gap: 8px; }
+.input-row input { flex: 1; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--card-border); font-size: 13px; outline: none; }
+.input-row input:focus { border-color: var(--accent); }
+.btn-gen { padding: 10px 20px; border-radius: 10px; font-size: 13px; font-weight: 600; color: white; border: none; cursor: pointer; background: var(--accent-bg); }
+
+.output-box { margin-top: 20px; padding: 16px; border-radius: 10px; border: 1px solid var(--card-border); background: var(--accent-light); min-height: 60px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 12px; }
+
+/* dir-b specific */
+.dir-b .tone-pill.active { background: var(--accent); }
+.dir-b .output-box { border-color: var(--card-border); background: var(--accent-light); }
+
+@media (max-width: 900px) { .flex { flex-direction: column; align-items: center; } .col { max-width: 100%; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🎨 Copymuse — Design Direction</h1>
+  <p>Dua arah design untuk AI Content Tools ecosystem</p>
+</div>
+
+<div class="flex">
+  <!-- Column A -->
+  <div class="col dir-a">
+    <div class="col-label">
+      <h3 style="color:#e85d3a;">🔥 Warm & Creative</h3>
+      <p>"Muse" — playful, berani, hangat. Coral + amber accent. Rounded corners.</p>
+    </div>
+
+    <!-- Landing page mockup -->
+    <div class="mockup">
+      <div class="mockup-header">
+        <div class="mockup-logo">Copymuse</div>
+        <div class="mockup-nav">
+          <a href="#">Tools</a>
+          <a href="#" class="active">Caption</a>
+          <a href="#">Prompt</a>
+          <a href="#">Blog</a>
+        </div>
+      </div>
+      <div class="hero">
+        <div class="hero-tag">✨ 6 AI Tools · Free</div>
+        <h2>Create Content<br>that <span>Actually</span> Works</h2>
+        <p>AI-powered captions, prompts, blog posts, and more. No signup needed.</p>
+        <button class="hero-cta">✨ Try Caption Generator</button>
+      </div>
+      <div class="features">
+        <div class="features-grid">
+          <div class="feature-card"><div class="feature-icon">📝</div><h3>Caption</h3><p>IG, Twitter, TikTok</p></div>
+          <div class="feature-card"><div class="feature-icon">✨</div><h3>Prompt</h3><p>ChatGPT, Claude, Gemini</p></div>
+          <div class="feature-card"><div class="feature-icon">📄</div><h3>Blog</h3><p>SEO-optimized posts</p></div>
+          <div class="feature-card"><div class="feature-icon">🧵</div><h3>Thread</h3><p>Twitter/X threads</p></div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="stat-num">6</div><div class="stat-label">Free Tools</div></div>
+        <div class="stat"><div class="stat-num">0</div><div class="stat-label">Signups</div></div>
+        <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Usage</div></div>
+      </div>
+    </div>
+
+    <!-- Tool page mockup -->
+    <div class="tool-preview">
+      <div class="mockup">
+        <div class="mockup-header">
+          <div class="mockup-logo">Copymuse</div>
+          <div class="mockup-nav">
+            <a href="#">Home</a>
+            <a href="#" class="active">Caption</a>
+            <a href="#">Prompt</a>
+          </div>
+        </div>
+        <div class="tool-body">
+          <h3>AI Caption Generator</h3>
+          <p class="sub">Instagram · Twitter · TikTok</p>
+          <div class="form-group">
+            <span class="form-label">Tone</span>
+            <div class="tone-pills">
+              <span class="tone-pill active">Casual</span>
+              <span class="tone-pill">Funny</span>
+              <span class="tone-pill">Professional</span>
+              <span class="tone-pill">Storytelling</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <span class="form-label">Topic</span>
+            <div class="input-row">
+              <input type="text" placeholder="What's your post about?" value="Launching a new product">
+              <button class="btn-gen">Generate</button>
+            </div>
+          </div>
+          <div class="output-box">
+            <span>We're thrilled to announce our newest product... 🚀</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:12px; font-size:12px; color:#6b7280; text-align:center;">
+      ➡ Vibes: <strong>Playful · Warm · Approachable</strong>
+    </div>
+  </div>
+
+  <!-- Column B -->
+  <div class="col dir-b">
+    <div class="col-label">
+      <h3 style="color:#4f46e5;">🧊 Clean & Professional</h3>
+      <p>"Copy" — clean, premium, precise. Navy + indigo accent. Sharp corners.</p>
+    </div>
+
+    <!-- Landing page mockup -->
+    <div class="mockup">
+      <div class="mockup-header">
+        <div class="mockup-logo">Copymuse</div>
+        <div class="mockup-nav">
+          <a href="#">Tools</a>
+          <a href="#" class="active">Caption</a>
+          <a href="#">Prompt</a>
+          <a href="#">Blog</a>
+        </div>
+      </div>
+      <div class="hero">
+        <div class="hero-tag">⚡ 6 Free AI Tools</div>
+        <h2>Better Content,<br><span>Zero Friction</span></h2>
+        <p>Professional AI writing tools. No accounts. No limits. Just results.</p>
+        <button class="hero-cta">⚡ Start Creating</button>
+      </div>
+      <div class="features">
+        <div class="features-grid">
+          <div class="feature-card"><div class="feature-icon">📝</div><h3>Caption</h3><p>Social media posts</p></div>
+          <div class="feature-card"><div class="feature-icon">✨</div><h3>Prompt</h3><p>AI master prompts</p></div>
+          <div class="feature-card"><div class="feature-icon">📄</div><h3>Blog</h3><p>SEO blog posts</p></div>
+          <div class="feature-card"><div class="feature-icon">🧵</div><h3>Thread</h3><p>Twitter threads</p></div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="stat-num">6</div><div class="stat-label">Tools</div></div>
+        <div class="stat"><div class="stat-num">Free</div><div class="stat-label">Forever</div></div>
+        <div class="stat"><div class="stat-num">API</div><div class="stat-label">Powered</div></div>
+      </div>
+    </div>
+
+    <!-- Tool page mockup -->
+    <div class="tool-preview">
+      <div class="mockup">
+        <div class="mockup-header">
+          <div class="mockup-logo">Copymuse</div>
+          <div class="mockup-nav">
+            <a href="#">Home</a>
+            <a href="#" class="active">Caption</a>
+            <a href="#">Prompt</a>
+          </div>
+        </div>
+        <div class="tool-body">
+          <h3>AI Caption Generator</h3>
+          <p class="sub">Platform: Instagram · Twitter · TikTok</p>
+          <div class="form-group">
+            <span class="form-label">Tone</span>
+            <div class="tone-pills">
+              <span class="tone-pill active">Casual</span>
+              <span class="tone-pill">Funny</span>
+              <span class="tone-pill">Professional</span>
+              <span class="tone-pill">Storytelling</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <span class="form-label">Topic</span>
+            <div class="input-row">
+              <input type="text" placeholder="Describe your post..." value="New product launch announcement">
+              <button class="btn-gen">Generate</button>
+            </div>
+          </div>
+          <div class="output-box">
+            <span>We're excited to announce our latest product launch!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:12px; font-size:12px; color:#6b7280; text-align:center;">
+      ➡ Vibes: <strong>Premium · Clean · Professional</strong>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
