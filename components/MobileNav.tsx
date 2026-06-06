@@ -3,12 +3,11 @@
 import { useState, useEffect } from "react";
 
 const LINKS = [
-  { href: "/caption", label: "Caption Generator" },
+  { href: "/social-post", label: "Social Media" },
   { href: "/prompt", label: "Prompt Generator" },
   { href: "/blog-writer", label: "Blog Writer" },
   { href: "/twitter-thread", label: "Twitter Thread" },
   { href: "/seo-optimizer", label: "SEO Optimizer" },
-  { href: "/social-post", label: "Social Post" },
 ];
 
 export default function MobileNav() {

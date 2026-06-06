@@ -77,12 +77,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               Copymuse
             </a>
             <div className="hidden sm:flex gap-1 text-sm">
-              <a href="/caption" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">Caption</a>
+              <a href="/social-post" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">Social</a>
               <a href="/prompt" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">Prompt</a>
               <a href="/blog-writer" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">Blog</a>
               <a href="/twitter-thread" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">Thread</a>
               <a href="/seo-optimizer" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">SEO</a>
-              <a href="/social-post" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">Social</a>
             </div>
             {/* Mobile hamburger */}
             <MobileNav />
@@ -98,12 +97,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span className="hidden sm:inline">Free AI content tools</span>
               </div>
               <div className="flex gap-4">
-                <a href="/caption" className="hover:text-[var(--color-coral-accent)] transition-colors">Caption</a>
+                <a href="/social-post" className="hover:text-[var(--color-coral-accent)] transition-colors">Social</a>
                 <a href="/prompt" className="hover:text-[var(--color-coral-accent)] transition-colors">Prompt</a>
                 <a href="/blog-writer" className="hover:text-[var(--color-coral-accent)] transition-colors">Blog</a>
                 <a href="/twitter-thread" className="hover:text-[var(--color-coral-accent)] transition-colors">Thread</a>
                 <a href="/seo-optimizer" className="hover:text-[var(--color-coral-accent)] transition-colors">SEO</a>
-                <a href="/social-post" className="hover:text-[var(--color-coral-accent)] transition-colors">Social</a>
               </div>
             </div>
           </footer>

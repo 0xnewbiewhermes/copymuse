@@ -15,17 +15,12 @@ function IconThread() {
 function IconSearch() {
   return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>;
 }
-function IconMegaphone() {
-  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden={true}><path d="m3 11 18-5v12L3 13v-2Z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>;
-}
-
 const TOOLS = [
-  { title: "Caption Generator", description: "Instagram, Twitter, and TikTok captions.", href: "/caption", icon: <IconPen /> },
+  { title: "Social Media Content", description: "Posts & captions for Instagram, TikTok, Twitter, LinkedIn.", href: "/social-post", icon: <IconPen /> },
   { title: "Master Prompt Generator", description: "Optimized prompts for ChatGPT, Claude, Gemini.", href: "/prompt", icon: <IconSparkle /> },
   { title: "Blog Writer", description: "SEO-optimized blog posts with AI.", href: "/blog-writer", icon: <IconDoc /> },
   { title: "Twitter Thread Generator", description: "Engaging Twitter/X threads from any topic.", href: "/twitter-thread", icon: <IconThread /> },
   { title: "SEO Optimizer", description: "Analyze & optimize for search rankings.", href: "/seo-optimizer", icon: <IconSearch /> },
-  { title: "Social Post Generator", description: "LinkedIn, IG, Twitter & TikTok posts.", href: "/social-post", icon: <IconMegaphone /> },
 ];
 
 export default function Home() {
@@ -43,8 +38,8 @@ export default function Home() {
           Captions, prompts, blog posts, threads, SEO, and social. All AI-powered, all free. No signup needed.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center pt-2">
-          <a href="/caption" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold text-white bg-[var(--color-coral-accent)] hover:bg-[var(--color-coral-600)] transition-colors">
-            Try Caption Generator
+          <a href="/social-post" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold text-white bg-[var(--color-coral-accent)] hover:bg-[var(--color-coral-600)] transition-colors">
+            Try Social Media Content
           </a>
         </div>
       </div>
