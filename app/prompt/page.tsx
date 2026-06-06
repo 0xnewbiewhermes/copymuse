@@ -39,9 +39,10 @@ export default function PromptPage() {
 
   return (
     <div className="space-y-8">
-      <div>
+      <div className="text-center max-w-lg mx-auto space-y-3">
+        <img src="/prompt-logo.svg" alt="Prompt Generator" className="w-10 h-10 mx-auto" />
         <h1 className="text-2xl font-bold">AI Master Prompt Generator</h1>
-        <p className="text-sm text-gray-500 mt-1">Generate optimized prompts for ChatGPT, Claude, Gemini, and more</p>
+        <p className="text-sm text-gray-500">Generate optimized prompts for ChatGPT, Claude, Gemini, and more</p>
       </div>
 
       <div className="space-y-4">
