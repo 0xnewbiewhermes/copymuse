@@ -53,6 +53,8 @@ export default function GeneratorForm({
           className="flex-1 px-4 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-coral-accent)]/30 focus:border-[var(--color-coral-accent)]"
           disabled={isLoading}
           aria-label="Topic"
+          autoComplete="off"
+          name="topic"
         />
         <button
           type="submit"

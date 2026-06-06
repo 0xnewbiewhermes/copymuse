@@ -30,7 +30,7 @@ export default function ToneSelector({ selected, onSelect, customTone, onCustomT
             key={t.id}
             onClick={() => onSelect(t.id)}
             aria-pressed={selected === t.id}
-            className={`px-3 py-1.5 text-sm rounded-full border transition-all ${
+            className={`px-3 py-1.5 text-sm rounded-full border transition-colors ${
               selected === t.id
                 ? "bg-[var(--color-coral-accent)] text-white border-[var(--color-coral-accent)]"
                 : "bg-white text-gray-600 border-gray-200 hover:border-[var(--color-coral-accent)] hover:text-[var(--color-coral-accent)]"

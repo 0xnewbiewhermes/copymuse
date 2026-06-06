@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "qD56RsCo1emAfAszPQudXAlFCo3TzAheHmqKezBIrJc", // Replace with actual code from Search Console
+    google: "qD56RsCo1emAfAszPQudXAlFCo3TzAheHmqKezBIrJc",
   },
   category: "technology",
 };
@@ -50,6 +50,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -73,12 +75,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               Copymuse
             </a>
             <div className="hidden sm:flex gap-1 text-sm">
-              <a href="/caption" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-all">Caption</a>
-              <a href="/prompt" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-all">Prompt</a>
-              <a href="/blog-writer" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-all">Blog</a>
-              <a href="/twitter-thread" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-all">Thread</a>
-              <a href="/seo-optimizer" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-all">SEO</a>
-              <a href="/social-post" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-all">Social</a>
+              <a href="/caption" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">Caption</a>
+              <a href="/prompt" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">Prompt</a>
+              <a href="/blog-writer" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">Blog</a>
+              <a href="/twitter-thread" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">Thread</a>
+              <a href="/seo-optimizer" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">SEO</a>
+              <a href="/social-post" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">Social</a>
             </div>
             {/* Mobile nav — compact icons */}
             <div className="flex sm:hidden gap-1 text-xs">
