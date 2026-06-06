@@ -82,6 +82,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </nav>
           {children}
+
+          {/* Footer */}
+          <footer className="mt-20 pt-8 border-t border-gray-100 text-xs text-[var(--color-text-tertiary)]">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-sm text-[var(--color-text)]">Copymuse</span>
+                <span className="hidden sm:inline">·</span>
+                <span className="hidden sm:inline">Free AI content tools</span>
+              </div>
+              <div className="flex gap-4">
+                <a href="/caption" className="hover:text-[var(--color-coral-accent)] transition-colors">Caption</a>
+                <a href="/prompt" className="hover:text-[var(--color-coral-accent)] transition-colors">Prompt</a>
+                <a href="/blog-writer" className="hover:text-[var(--color-coral-accent)] transition-colors">Blog</a>
+                <a href="/twitter-thread" className="hover:text-[var(--color-coral-accent)] transition-colors">Thread</a>
+                <a href="/seo-optimizer" className="hover:text-[var(--color-coral-accent)] transition-colors">SEO</a>
+                <a href="/social-post" className="hover:text-[var(--color-coral-accent)] transition-colors">Social</a>
+              </div>
+            </div>
+          </footer>
         </div>
       </body>
     </html>

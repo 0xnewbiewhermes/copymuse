@@ -13,8 +13,8 @@ export default function Home() {
   return (
     <div className="space-y-12">
       {/* Hero */}
-      <div className="text-center pt-8 sm:pt-16 pb-4 animate-in-up space-y-5">
-        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-[1.1] text-[var(--color-text)]">
+      <div className="text-center pt-12 sm:pt-24 pb-6 animate-in-up space-y-6">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] text-[var(--color-text)]">
           Create Content That<br />
           <span className="text-[var(--color-coral-accent)]">
             Actually Works
