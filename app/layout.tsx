@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import MobileNav from "@/components/MobileNav";
 
 const SITE_URL = "https://www.copymuse.digital";
 
@@ -70,7 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="antialiased min-h-screen bg-white text-[var(--color-text)]">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 py-4 sm:py-6">
-          <nav className="flex items-center justify-between mb-12 pb-5 border-b border-gray-100" aria-label="Main navigation">
+          <nav className="relative flex items-center justify-between mb-12 pb-5 border-b border-gray-100" aria-label="Main navigation">
             <a href="/" className="font-extrabold text-xl tracking-tight text-[var(--color-coral-accent)] hover:opacity-80 transition-opacity">
               Copymuse
             </a>
@@ -82,15 +83,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/seo-optimizer" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">SEO</a>
               <a href="/social-post" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">Social</a>
             </div>
-            {/* Mobile nav — compact icons */}
-            <div className="flex sm:hidden gap-1 text-xs">
-              <a href="/caption" className="px-2 py-1 rounded-full text-gray-400 hover:text-gray-600 transition-colors" title="Caption">📝</a>
-              <a href="/prompt" className="px-2 py-1 rounded-full text-gray-400 hover:text-gray-600 transition-colors" title="Prompt">✨</a>
-              <a href="/blog-writer" className="px-2 py-1 rounded-full text-gray-400 hover:text-gray-600 transition-colors" title="Blog">📄</a>
-              <a href="/twitter-thread" className="px-2 py-1 rounded-full text-gray-400 hover:text-gray-600 transition-colors" title="Thread">🧵</a>
-              <a href="/seo-optimizer" className="px-2 py-1 rounded-full text-gray-400 hover:text-gray-600 transition-colors" title="SEO">🔍</a>
-              <a href="/social-post" className="px-2 py-1 rounded-full text-gray-400 hover:text-gray-600 transition-colors" title="Social">📢</a>
-            </div>
+            {/* Mobile hamburger */}
+            <MobileNav />
           </nav>
           {children}
 
