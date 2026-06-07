@@ -49,22 +49,22 @@ export default function OutputDisplay({
   return (
     <div className="space-y-4 animate-in">
       <div className="flex items-center justify-between">
-        <h2 className="text-xs font-medium text-gray-500 uppercase tracking-wider">Result</h2>
+        <h2 className="text-xs font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Result</h2>
         {showCharCount && (
-          <span className="text-xs tabular-nums text-gray-400">
+          <span className="text-xs tabular-nums text-[var(--color-text-tertiary)]">
             {charCount}{maxChars ? ` / ${maxChars}` : ""}
           </span>
         )}
       </div>
 
-      <div className="p-4 sm:p-5 border border-gray-200 rounded-xl bg-gray-50">
-        <pre className="whitespace-pre-wrap break-words text-sm text-gray-900 leading-relaxed font-sans">
+      <div className="gideon-output">
+        <pre className="whitespace-pre-wrap break-words text-sm text-[var(--color-text)] leading-relaxed font-sans">
           {content}
         </pre>
       </div>
 
       <div className="flex gap-3">
-        <button onClick={handleCopy} className="flex-1 px-4 py-2 text-sm font-semibold rounded-full text-white bg-[var(--color-coral-accent)] hover:bg-[var(--color-coral-600)] flex items-center justify-center gap-2 transition-colors">
+        <button onClick={handleCopy} className="gideon-btn flex-1">
           {copied ? (
             <><IconCheck className="w-4 h-4" /> Copied</>
           ) : (
@@ -75,7 +75,7 @@ export default function OutputDisplay({
           onClick={onRegenerate}
           disabled={isLoading}
           aria-label="Regenerate"
-          className="px-4 py-2 border border-gray-200 text-sm font-medium rounded-full hover:bg-gray-50 disabled:opacity-50 transition-colors"
+          className="px-4 py-2 border border-[var(--color-border)] text-sm font-medium rounded-lg hover:bg-[var(--color-surface-muted)] disabled:opacity-50 transition-all"
         >
           <IconRefresh className={`w-4 h-4 ${isLoading ? "animate-spin" : ""}`} />
         </button>

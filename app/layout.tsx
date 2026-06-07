@@ -53,7 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800;900&display=swap" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -71,32 +71,40 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="antialiased min-h-screen bg-white text-[var(--color-text)]">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 py-4 sm:py-6">
-          <nav className="flex items-center justify-between mb-12 pb-5 border-b border-gray-100" aria-label="Main navigation">
-            <a href="/" className="font-extrabold text-xl tracking-tight text-[var(--color-coral-accent)] hover:opacity-80 transition-opacity">
+        {/* Cursor follower */}
+        <div id="cursor-follower" />
+
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          {/* Glassmorphism Nav */}
+          <nav
+            id="main-nav"
+            className="gideon-nav flex items-center justify-between py-4 mb-8 sticky top-0 z-50 -mx-4 sm:-mx-6 px-4 sm:px-6"
+            aria-label="Main navigation"
+          >
+            <a href="/" className="text-xl font-extrabold tracking-tight gideon-gradient-text hover:opacity-90 transition-opacity">
               Copymuse
             </a>
-            <div className="hidden sm:flex gap-1 text-sm">
-              <a href="/social-post" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">Social</a>
-              <a href="/prompt" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">Prompt</a>
-              <a href="/blog-writer" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">Blog</a>
-              <a href="/twitter-thread" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">Thread</a>
-              <a href="/seo-optimizer" className="px-3.5 py-1.5 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors">SEO</a>
+            <div className="hidden sm:flex gap-1 text-sm font-medium">
+              <a href="/social-post" className="nav-link px-3.5 py-1.5 text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors">Social</a>
+              <a href="/prompt" className="nav-link px-3.5 py-1.5 text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors">Prompt</a>
+              <a href="/blog-writer" className="nav-link px-3.5 py-1.5 text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors">Blog</a>
+              <a href="/twitter-thread" className="nav-link px-3.5 py-1.5 text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors">Thread</a>
+              <a href="/seo-optimizer" className="nav-link px-3.5 py-1.5 text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors">SEO</a>
             </div>
-            {/* Mobile hamburger */}
             <MobileNav />
           </nav>
+
           {children}
 
           {/* Footer */}
-          <footer className="mt-20 pt-8 border-t border-gray-100 text-xs text-[var(--color-text-tertiary)]">
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <footer className="mt-20 pt-8 pb-10 border-t border-[var(--color-border)]">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-[var(--color-text-tertiary)]">
               <div className="flex items-center gap-2">
-                <span className="font-bold text-sm text-[var(--color-text)]">Copymuse</span>
+                <span className="font-bold text-[var(--color-text)]">Copymuse</span>
                 <span className="hidden sm:inline">·</span>
                 <span className="hidden sm:inline">Free AI content tools</span>
               </div>
-              <div className="flex gap-4">
+              <div className="flex gap-6">
                 <a href="/social-post" className="hover:text-[var(--color-coral-accent)] transition-colors">Social</a>
                 <a href="/prompt" className="hover:text-[var(--color-coral-accent)] transition-colors">Prompt</a>
                 <a href="/blog-writer" className="hover:text-[var(--color-coral-accent)] transition-colors">Blog</a>
@@ -106,6 +114,58 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </footer>
         </div>
+
+        {/* Global scripts: nav scroll, cursor, reveals */}
+        <script dangerouslySetInnerHTML={{ __html: `
+          (function(){
+            // Nav scroll
+            var nav = document.getElementById('main-nav');
+            if(nav) {
+              window.addEventListener('scroll', function(){
+                nav.classList.toggle('scrolled', window.scrollY > 30);
+              });
+            }
+
+            // Cursor follower
+            var cursor = document.getElementById('cursor-follower');
+            if(cursor) {
+              var mx = 0, my = 0, cx = 0, cy = 0;
+              document.addEventListener('mousemove', function(e){
+                mx = e.clientX; my = e.clientY;
+                cursor.classList.add('visible');
+              });
+              document.addEventListener('mouseleave', function(){
+                cursor.classList.remove('visible');
+              });
+              function anim(){
+                cx += (mx - cx) * 0.12;
+                cy += (my - cy) * 0.12;
+                cursor.style.left = cx + 'px';
+                cursor.style.top = cy + 'px';
+                requestAnimationFrame(anim);
+              }
+              anim();
+              document.querySelectorAll('a, button, .gideon-card, .tool-card').forEach(function(el){
+                el.addEventListener('mouseenter', function(){ cursor.classList.add('hovering'); });
+                el.addEventListener('mouseleave', function(){ cursor.classList.remove('hovering'); });
+              });
+            }
+
+            // IntersectionObserver for reveals
+            var obs = new IntersectionObserver(function(entries){
+              entries.forEach(function(entry){
+                if(entry.isIntersecting) {
+                  if(entry.target.classList.contains('stagger')) {
+                    entry.target.classList.add('visible');
+                  } else {
+                    entry.target.classList.add('visible');
+                  }
+                }
+              });
+            }, { threshold: 0.12 });
+            document.querySelectorAll('.reveal, .stagger').forEach(function(el){ obs.observe(el); });
+          })();
+        `}} />
       </body>
     </html>
   );

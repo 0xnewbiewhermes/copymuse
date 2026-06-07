@@ -50,7 +50,7 @@ export default function GeneratorForm({
           onChange={(e) => setTopic(e.target.value)}
           placeholder={placeholder}
           maxLength={maxLength}
-          className="flex-1 px-4 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-coral-accent)]/30 focus:border-[var(--color-coral-accent)]"
+          className="gideon-input"
           disabled={isLoading}
           aria-label="Topic"
           autoComplete="off"
@@ -59,7 +59,7 @@ export default function GeneratorForm({
         <button
           type="submit"
           disabled={isLoading || !topic.trim()}
-          className="w-full sm:w-auto px-4 py-2.5 text-sm font-semibold rounded-full text-white bg-[var(--color-coral-accent)] hover:bg-[var(--color-coral-600)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors"
+          className="gideon-btn gideon-btn-sm w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
         >
           {isLoading ? (
             <span className="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />

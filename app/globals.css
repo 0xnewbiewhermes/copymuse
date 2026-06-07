@@ -20,12 +20,13 @@
   --color-text: #0f172a;
   --color-text-secondary: #475569;
   --color-text-tertiary: #94a3b8;
+  --font-sans: 'Inter', system-ui, sans-serif;
 }
 
-* { font-family: 'Onest', system-ui, sans-serif; }
+* { font-family: var(--font-sans); }
 
 @layer base {
-  html { touch-action: manipulation; }
+  html { touch-action: manipulation; scroll-behavior: smooth; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -35,6 +36,8 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ===== Gideon Design Animations ===== */
 
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(6px); }
@@ -50,10 +53,183 @@
   to { transform: rotate(360deg); }
 }
 
-.animate-in {
-  animation: fade-in 0.3s ease-out;
+/* Reveal animation (IntersectionObserver) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.animate-in-up {
-  animation: fade-in-up 0.4s ease-out;
+/* Stagger children */
+.stagger > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
+.stagger.visible > *:nth-child(1) { transition-delay: 0ms; opacity: 1; transform: translateY(0); }
+.stagger.visible > *:nth-child(2) { transition-delay: 80ms; opacity: 1; transform: translateY(0); }
+.stagger.visible > *:nth-child(3) { transition-delay: 160ms; opacity: 1; transform: translateY(0); }
+.stagger.visible > *:nth-child(4) { transition-delay: 240ms; opacity: 1; transform: translateY(0); }
+.stagger.visible > *:nth-child(5) { transition-delay: 320ms; opacity: 1; transform: translateY(0); }
+.stagger.visible > *:nth-child(6) { transition-delay: 400ms; opacity: 1; transform: translateY(0); }
+
+.animate-in { animation: fade-in 0.3s ease-out; }
+.animate-in-up { animation: fade-in-up 0.4s ease-out; }
+
+/* ===== Gideon Component Styles ===== */
+
+/* Cards */
+.gideon-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 24px;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  overflow: hidden;
+}
+.gideon-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(135deg, #e85d3a, #f06a4a);
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.gideon-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+  border-color: var(--color-border-hover);
+}
+.gideon-card:hover::before { opacity: 1; }
+
+/* Card icon */
+.gideon-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--color-coral-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: var(--color-coral-accent);
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.gideon-card:hover .gideon-icon {
+  transform: scale(1.1) rotate(-4deg);
+}
+
+/* Buttons */
+.gideon-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 28px; border-radius: 8px;
+  font-size: 14px; font-weight: 500; line-height: 1;
+  border: none; cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  text-decoration: none;
+  background: #e85d3a; color: #fff;
+}
+.gideon-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(232,93,58,0.25);
+}
+.gideon-btn-ghost {
+  background: transparent; color: #525252;
+  border: 1.5px solid var(--color-border);
+}
+.gideon-btn-ghost:hover {
+  border-color: var(--color-border-hover);
+  box-shadow: none;
+  transform: translateY(-2px);
+}
+.gideon-btn-sm {
+  padding: 10px 20px;
+  font-size: 13px;
+}
+
+/* Inputs */
+.gideon-input {
+  flex: 1; padding: 12px 16px;
+  font-size: 14px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  background: #fff;
+}
+.gideon-input:focus {
+  border-color: var(--color-coral-accent);
+  box-shadow: 0 0 0 3px rgba(232,93,58,0.12);
+}
+.gideon-input:disabled {
+  opacity: 0.5; cursor: not-allowed;
+}
+
+/* Output */
+.gideon-output {
+  padding: 24px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface-muted);
+  line-height: 1.7;
+}
+
+/* Gradient text */
+.gideon-gradient-text {
+  background: linear-gradient(135deg, #e85d3a, #f06a4a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glassmorphism nav */
+.gideon-nav {
+  transition: background 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.gideon-nav.scrolled {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Cursor follower */
+#cursor-follower {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: #e85d3a;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, opacity 0.3s;
+  opacity: 0;
+}
+#cursor-follower.visible { opacity: 1; }
+#cursor-follower.hovering {
+  width: 48px; height: 48px;
+  opacity: 0.25;
+}
+
+/* Nav link underline */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: #e85d3a;
+  transition: width 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.nav-link:hover::after { width: 100%; }
