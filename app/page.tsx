@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ToolCard from "@/components/ToolCard";
 
 function IconPen() {
@@ -42,8 +43,8 @@ export default function Home() {
           Captions, prompts, blog posts, threads, SEO, and social. All AI-powered, all free. No signup needed.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-1 reveal">
-          <a href="/social-post" className="gideon-btn">Explore tools →</a>
-          <a href="/social-post" className="gideon-btn gideon-btn-ghost">Try Social Media</a>
+          <Link href="/social-post" className="gideon-btn">Explore tools →</Link>
+          <Link href="/social-post" className="gideon-btn gideon-btn-ghost">Try Social Media</Link>
         </div>
       </div>
 
@@ -76,7 +77,7 @@ export default function Home() {
       <div className="text-center pt-8 pb-4 reveal">
         <h2 className="text-xl sm:text-2xl font-bold tracking-tight mb-2">Start creating in seconds</h2>
         <p className="text-sm text-[var(--color-text-secondary)] mb-6">No account. No credit card. Just pick a tool and go.</p>
-        <a href="/social-post" className="gideon-btn">Try Social Media Content →</a>
+        <Link href="/social-post" className="gideon-btn">Try Social Media Content →</Link>
       </div>
     </div>
   );

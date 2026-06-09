@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import "./globals.css";
 import MobileNav from "@/components/MobileNav";
 
@@ -81,15 +82,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             className="gideon-nav flex items-center justify-between py-4 mb-8 sticky top-0 z-50 -mx-4 sm:-mx-6 px-4 sm:px-6"
             aria-label="Main navigation"
           >
-            <a href="/" className="text-xl font-extrabold tracking-tight gideon-gradient-text hover:opacity-90 transition-opacity">
+            <Link href="/" className="text-xl font-extrabold tracking-tight gideon-gradient-text hover:opacity-90 transition-opacity">
               Copymuse
-            </a>
+            </Link>
             <div className="hidden sm:flex gap-1 text-sm font-medium">
-              <a href="/social-post" className="nav-link px-3.5 py-1.5 text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors">Social</a>
-              <a href="/prompt" className="nav-link px-3.5 py-1.5 text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors">Prompt</a>
-              <a href="/blog-writer" className="nav-link px-3.5 py-1.5 text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors">Blog</a>
-              <a href="/twitter-thread" className="nav-link px-3.5 py-1.5 text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors">Thread</a>
-              <a href="/seo-optimizer" className="nav-link px-3.5 py-1.5 text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors">SEO</a>
+              <Link href="/social-post" className="nav-link px-3.5 py-1.5 text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors">Social</Link>
+              <Link href="/prompt" className="nav-link px-3.5 py-1.5 text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors">Prompt</Link>
+              <Link href="/blog-writer" className="nav-link px-3.5 py-1.5 text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors">Blog</Link>
+              <Link href="/twitter-thread" className="nav-link px-3.5 py-1.5 text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors">Thread</Link>
+              <Link href="/seo-optimizer" className="nav-link px-3.5 py-1.5 text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors">SEO</Link>
             </div>
             <MobileNav />
           </nav>
@@ -105,11 +106,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span className="hidden sm:inline">Free AI content tools</span>
               </div>
               <div className="flex gap-6">
-                <a href="/social-post" className="hover:text-[var(--color-coral-accent)] transition-colors">Social</a>
-                <a href="/prompt" className="hover:text-[var(--color-coral-accent)] transition-colors">Prompt</a>
-                <a href="/blog-writer" className="hover:text-[var(--color-coral-accent)] transition-colors">Blog</a>
-                <a href="/twitter-thread" className="hover:text-[var(--color-coral-accent)] transition-colors">Thread</a>
-                <a href="/seo-optimizer" className="hover:text-[var(--color-coral-accent)] transition-colors">SEO</a>
+                <Link href="/social-post" className="hover:text-[var(--color-coral-accent)] transition-colors">Social</Link>
+                <Link href="/prompt" className="hover:text-[var(--color-coral-accent)] transition-colors">Prompt</Link>
+                <Link href="/blog-writer" className="hover:text-[var(--color-coral-accent)] transition-colors">Blog</Link>
+                <Link href="/twitter-thread" className="hover:text-[var(--color-coral-accent)] transition-colors">Thread</Link>
+                <Link href="/seo-optimizer" className="hover:text-[var(--color-coral-accent)] transition-colors">SEO</Link>
               </div>
             </div>
           </footer>

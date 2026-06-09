@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 const LINKS = [
@@ -52,7 +53,7 @@ export default function MobileNav() {
           <div className="px-5 pt-8 pb-6">
             <nav aria-label="Mobile navigation" className="space-y-1">
               {LINKS.map((link, i) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
@@ -60,7 +61,7 @@ export default function MobileNav() {
                   style={{ animation: `fade-in 0.3s ease-out ${i * 60}ms both` }}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>
