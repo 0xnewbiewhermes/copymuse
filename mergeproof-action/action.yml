@@ -1,0 +1,23 @@
+name: "MergeProof"
+description: "Maps pull-request acceptance criteria to implementation and test evidence."
+author: "CopyMuse"
+inputs:
+  github-token:
+    description: "GitHub token with pull-requests: write permission."
+    required: true
+  fail-on-unproven:
+    description: "Fail the workflow when any criterion is unproven."
+    required: false
+    default: "false"
+runs:
+  using: "composite"
+  steps:
+    - name: Build evidence brief
+      shell: bash
+      env:
+        INPUT_GITHUB_TOKEN: ${{ inputs.github-token }}
+        INPUT_FAIL_ON_UNPROVEN: ${{ inputs.fail-on-unproven }}
+      run: node "$GITHUB_ACTION_PATH/index.js"
+branding:
+  icon: "check-circle"
+  color: "purple"
