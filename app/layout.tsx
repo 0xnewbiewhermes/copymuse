@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "MergeProof — Know what you're merging",
   description: "Evidence gates for AI-assisted pull requests. Map acceptance criteria to implementation and test evidence before merge.",
   metadataBase: new URL(SITE_URL),
-  icons: { icon: "/icon.svg" },
+  icons: { icon: "/icon.svg?v=mergeproof-1" },
   openGraph: { title: "MergeProof — Know what you're merging", description: "Evidence gates for AI-assisted pull requests.", type: "website", url: SITE_URL, siteName: "CopyMuse" },
   twitter: { card: "summary_large_image", title: "MergeProof — Know what you're merging", description: "Evidence gates for AI-assisted pull requests." },
   robots: { index: true, follow: true },
