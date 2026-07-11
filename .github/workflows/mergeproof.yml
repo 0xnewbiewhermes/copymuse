@@ -1,0 +1,19 @@
+name: MergeProof evidence gate
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  evidence:
+    name: Check acceptance-criteria evidence
+    runs-on: ubuntu-latest
+    steps:
+      - uses: 0xnewbiewhermes/copymuse/mergeproof-action@27faf66e349010fe3f7218a245c522fa26c56ed7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          fail-on-unproven: false
