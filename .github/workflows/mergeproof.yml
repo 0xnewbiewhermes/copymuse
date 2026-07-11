@@ -13,7 +13,7 @@ jobs:
     name: Check acceptance-criteria evidence
     runs-on: ubuntu-latest
     steps:
-      - uses: 0xnewbiewhermes/copymuse/mergeproof-action@27faf66e349010fe3f7218a245c522fa26c56ed7
+      - uses: 0xnewbiewhermes/copymuse/mergeproof-action@7901c4c696ac63c6c9bbcbf2b704fb4d4a708d05
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           fail-on-unproven: false
